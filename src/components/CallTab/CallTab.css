@@ -1,0 +1,10 @@
+.formCenter {
+    display: flex;
+    padding-right: 50px;
+    width: 90%;
+    margin-right: 0;
+}
+.button {
+    display: flex;
+    width: 100%;
+}

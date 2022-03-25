@@ -10,7 +10,6 @@ import {
     ThemeProvider, Typography
 } from "@mui/material";
 import logo from '../../assets/ridersLogo.png'
-import ridersTheme from '../../util/ridersTheme'
 import {useEffect, useState} from "react";
 import {Visibility, VisibilityOff} from "@mui/icons-material";
 import './LoginPage.css'
@@ -28,7 +27,6 @@ const LoginPage = () => {
     useEffect(() =>{
         if (loggedIn) navigate('/home')
     }, [loggedIn])
-//hello
 
 
     const handleChange =(prop) => (event: React.ChangeEvent<HTMLInputElement>) => {

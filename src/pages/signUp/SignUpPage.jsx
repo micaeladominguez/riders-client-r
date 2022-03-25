@@ -1,5 +1,6 @@
 import {useEffect, useState} from "react";
 import {useNavigate} from "react-router-dom";
+import Select from 'react-select';
 import {
     Box, Button, Checkbox,
     Container,
@@ -12,6 +13,7 @@ import {
 } from "@mui/material";
 import logo from "../../assets/ridersLogo.png";
 import {Visibility, VisibilityOff} from "@mui/icons-material";
+import './SignUpPage.css'
 
 
 const SignUpPage = () => {
@@ -19,9 +21,10 @@ const SignUpPage = () => {
         email: '',
         password: '',
         name: '',
-        surename: '',
+        surname: '',
         dni: '',
         showPassword: false,
+        vehicle: '',
     });
 
     const navigate = useNavigate()
@@ -35,6 +38,10 @@ const SignUpPage = () => {
 
     const handleChange =(prop) => (event: React.ChangeEvent<HTMLInputElement>) => {
         setValues({ ...values, [prop]: event.target.value });
+        console.log(values);
+    };
+    const handleVehicleChange = selectedOption => {
+        setValues({ ...values, vehicle: selectedOption.value});
     };
 
     const handleClickShowPassword = () => {
@@ -43,6 +50,12 @@ const SignUpPage = () => {
             showPassword: !values.showPassword,
         });
     };
+    const options = [
+        { value: 'bicycle', label: 'Bicycle' },
+        { value: 'motorcycle', label: 'Motorcycle' },
+        { value: 'car', label: 'Car' },
+        { value: 'van', label: 'Van' }
+    ];
 
     const handleMouseDownPassword = (event: React.MouseEvent<HTMLButtonElement>) => {
         event.preventDefault();
@@ -125,11 +138,11 @@ const SignUpPage = () => {
                             <InputLabel htmlFor="outlined-adornment-password">Last Name</InputLabel>
                             <OutlinedInput
                                 required
-                                id="surename"
+                                id="surname"
                                 type='text'
-                                value={values.surename}
-                                onChange={handleChange('surename')}
-                                label="Surename"
+                                value={values.surname}
+                                onChange={handleChange('surname')}
+                                label="Surname"
                             />
                         </FormControl>
                         </div>
@@ -145,7 +158,14 @@ const SignUpPage = () => {
                                 label="DNI"
                             />
                         </FormControl>
-
+                        <FormControl margin="normal" fullWidth sx={{ mt: 2}} variant="outlined"  >
+                            <Select
+                                placeholder={"Select your vehicle..."}
+                                value={values.vehicle.label}
+                                onChange={handleVehicleChange}
+                                options={options}
+                            />
+                        </FormControl>
 
                         <label className={'validationLabel'} id='passwordLabel'>Invalid password or Email</label>
 

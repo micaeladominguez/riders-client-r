@@ -10,7 +10,7 @@ export const ridersTheme = createTheme({
             main: '#ffffff',
         },
         background: {
-            default: '#f9f6f4',
+            default: '#ffffff',
         },
     },
     props: {
@@ -30,7 +30,7 @@ export const ridersTheme = createTheme({
                 padding: 1,
                 '&$checked, &$colorPrimary$checked, &$colorSecondary$checked': {
                     transform: 'translateX(16px)',
-                    color: '#fff',
+                    color: '#000000',
                     '& + $track': {
                         opacity: 1,
                         border: 'none',
@@ -44,7 +44,7 @@ export const ridersTheme = createTheme({
             track: {
                 borderRadius: 13,
                 border: '1px solid #bdbdbd',
-                backgroundColor: '#fafafa',
+                backgroundColor: '#000000',
                 opacity: 1,
                 transition: 'background-color 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,border 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
             },
