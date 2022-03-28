@@ -12,13 +12,17 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import {useNavigate} from "react-router-dom";
-import { deepOrange, green } from '@mui/material/colors';
+import HomeIcon from '@mui/icons-material/Home';
+import SvgIcon from '@mui/material/SvgIcon';
+import GradeIcon from '@mui/icons-material/Grade';
+import NotificationsIcon from '@mui/icons-material/Notifications';
+import TwoWheelerIcon from '@mui/icons-material/TwoWheeler';
 export const NavBar = ()  => {
     const pages = [
-        {label:'Home', path:'/home'},
-        {label:'Grades', path: '/'},
-        {label:'Notifications', path:'/'},
-        {label: 'ActualRide', path: '/'}
+        {label:'Home', icon: HomeIcon, path:'/home'},
+        {label:'Grades', icon: GradeIcon, path: '/'},
+        {label:'Notifications',icon:NotificationsIcon, path:'/'},
+        {label: 'Actual-Ride', icon: TwoWheelerIcon, path: '/'}
     ];
     const settings = [
         {label:'Logout', path: '/'}
@@ -90,13 +94,15 @@ export const NavBar = ()  => {
                     </Box>
                     <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
                         {pages.map((page) => (
-                            <Button
-                                key={page.label}
-                                onClick={()=> navigate(page.path)}
-                                sx={{ my: 2, color: 'white', display: 'block' }}
-                            >
-                                {page.label}
-                            </Button>
+                                <Tooltip title={page.label}>
+                                    <Button
+                                        key={page.label}
+                                        onClick={()=> navigate(page.path)}
+                                        sx={{ my: 2, color: 'white', display: 'block' }}
+                                    >
+                                        <SvgIcon component={page.icon} />
+                                    </Button>
+                                </Tooltip>
                         ))}
                     </Box>
 

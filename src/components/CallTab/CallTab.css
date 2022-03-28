@@ -8,3 +8,6 @@
     display: flex;
     width: 100%;
 }
+.card {
+    background-color: #FFFFBF;
+}

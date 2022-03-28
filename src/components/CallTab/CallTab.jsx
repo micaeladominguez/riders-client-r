@@ -7,7 +7,7 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import "./CallTab.css";
 import {Grid} from "@mui/material";
-const CallTab = () => {
+const CallTab = (callTab) => {
 
     const card = (
         <React.Fragment >
@@ -15,18 +15,19 @@ const CallTab = () => {
                 <Grid container
                       direction="row"
                       justifyContent="space-between"
-                      alignItems="center">
-                    <Grid>
-                        <CardContent>
+                      alignItems="center"
+                      className="card"
+                       >
+                    <Grid >
+                        <CardContent disableSpacing={false} >
                             <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-                                Caller Name
+                                {callTab.call.callerName}
                             </Typography>
                             <Typography variant="h5" component="div">
-                                ADDRESS AND HOUR
+                                {callTab.call.addressAndHour}
                             </Typography>
                             <Typography variant="body2">
-                               description
-
+                                {callTab.call.description}
                             </Typography>
                         </CardContent>
                         <CardActions >
@@ -44,7 +45,7 @@ const CallTab = () => {
         </React.Fragment>
     );
     return(
-        <Box sx={{ minWidth: 275 }}>
+        <Box sx={{ borderRadius: '50%',  height: '100%' , width: '100%'}}  >
             <Card variant="outlined">{card}</Card>
         </Box>
     );
