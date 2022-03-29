@@ -27,6 +27,21 @@ const HomePage = () => {
                 callerName: "CallerName",
                 addressAndHour: "ADDRESS AND HOUR",
                 description: "description"
+            }},
+        {call: {
+                callerName: "CallerName",
+                addressAndHour: "ADDRESS AND HOUR",
+                description: "description"
+            }},
+        {call: {
+                callerName: "CallerName",
+                addressAndHour: "ADDRESS AND HOUR",
+                description: "description"
+            }},
+        {call: {
+                callerName: "CallerName",
+                addressAndHour: "ADDRESS AND HOUR",
+                description: "description"
             }}]
     return (
         <div>
@@ -34,9 +49,6 @@ const HomePage = () => {
             {pages.map((page) => (
                     <CallTab call={page.call} />
                 ))}
-
-
-
         </div>
     )
 }

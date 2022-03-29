@@ -11,15 +11,13 @@ const CallTab = (callTab) => {
 
     const card = (
         <React.Fragment >
-            <div >
                 <Grid container
                       direction="row"
                       justifyContent="space-between"
                       alignItems="center"
-                      className="card"
                        >
-                    <Grid >
-                        <CardContent disableSpacing={false} >
+                    <Grid>
+                        <CardContent   >
                             <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
                                 {callTab.call.callerName}
                             </Typography>
@@ -29,25 +27,31 @@ const CallTab = (callTab) => {
                             <Typography variant="body2">
                                 {callTab.call.description}
                             </Typography>
-                        </CardContent>
-                        <CardActions >
                             <Button size="medium">Option to see more fields</Button>
-                        </CardActions>
+                        </CardContent>
                     </Grid>
                     <Grid >
-                        <div className="formCenter">
-                            <Button variant="contained" color="success" className="button"> I'm interested </Button>
-                        </div>
+                        <CardActions>
+                            <div>
+                                <Button variant="contained" color="success" className="button"> I'm interested </Button>
+                            </div>
+                        </CardActions>
                     </Grid>
                 </Grid>
-            </div>
-
         </React.Fragment>
     );
     return(
-        <Box sx={{ borderRadius: '50%',  height: '100%' , width: '100%'}}  >
-            <Card variant="outlined">{card}</Card>
-        </Box>
+        <div style={{ display: 'flex', position:'centre', width: '100%', borderRadius: '60%' }}>
+            <Box  sx={{
+                marginTop: 1,
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                width: '100%',
+            }}  >
+                <Card variant="outlined" sx={{width:'98%', borderRadius:'20px', opacity: '100%'}}>{card}</Card>
+            </Box>
+        </div>
     );
 }
 
