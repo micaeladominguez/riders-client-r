@@ -14,6 +14,9 @@ import {
 import logo from "../../assets/ridersLogo.png";
 import {Visibility, VisibilityOff} from "@mui/icons-material";
 import './SignUpPage.css'
+import {useMutation} from "@apollo/client";
+import {LOGIN_RIDER, REGISTER_RIDER} from "../../util/queries/sessionQueries";
+import * as React from "react";
 
 
 const SignUpPage = () => {
@@ -27,12 +30,11 @@ const SignUpPage = () => {
         vehicle: '',
     });
 
-    const navigate = useNavigate()
-    const  loggedIn = window.localStorage.getItem('token')
 
-    useEffect(() =>{
-        if (loggedIn) navigate('/home')
-    }, [loggedIn])
+    const navigate = useNavigate()
+    const [signup, {data, loading, error}] = useMutation(REGISTER_RIDER)
+
+
 
 
 
@@ -61,11 +63,14 @@ const SignUpPage = () => {
         event.preventDefault();
     };
 
-    const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        if (values.password){
-            //dispatch login
-        }
+        const response = await signup({variables: {email: values.email, password: values.password, name: values.name,
+                surname: values.surname,
+                DNI: parseInt(values.dni) ,
+                vehicleType: values.vehicle }})
+        console.log(response);
+        navigate('/')
     };
 
 

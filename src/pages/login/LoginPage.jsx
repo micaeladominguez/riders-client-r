@@ -9,10 +9,13 @@ import {
     OutlinedInput,
     ThemeProvider, Typography
 } from "@mui/material";
-import logo from '../../assets/ridersLogo.png'
 import {useEffect, useState} from "react";
+import logo from '../../assets/ridersLogo.png'
 import {Visibility, VisibilityOff} from "@mui/icons-material";
 import './LoginPage.css'
+import * as React from "react";
+import {LOGIN_RIDER} from "../../util/queries/sessionQueries";
+import {useMutation} from "@apollo/client";
 
 const LoginPage = () => {
     const [values, setValues] = useState({
@@ -22,12 +25,14 @@ const LoginPage = () => {
     });
 
     const navigate = useNavigate()
+
     const  loggedIn = window.localStorage.getItem('token')
 
     useEffect(() =>{
         if (loggedIn) navigate('/home')
     }, [loggedIn])
 
+    const [login, {data, loading, error}] = useMutation(LOGIN_RIDER)
 
     const handleChange =(prop) => (event: React.ChangeEvent<HTMLInputElement>) => {
         setValues({ ...values, [prop]: event.target.value });
@@ -44,12 +49,15 @@ const LoginPage = () => {
         event.preventDefault();
     };
 
-    const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        if (values.password){
-            //dispatch login
-        }
+        const response = await login({variables: {email: values.email, password: values.password}})
+        const token = response.data.logInRider.token
+        console.log(token)
+        window.localStorage.setItem('token', token)
+        navigate('/home')
     };
+
 
 
     return (

@@ -17,6 +17,8 @@ import SvgIcon from '@mui/material/SvgIcon';
 import GradeIcon from '@mui/icons-material/Grade';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import TwoWheelerIcon from '@mui/icons-material/TwoWheeler';
+import logo from '../../assets/ridersLogo.png'
+import './NavBar.css'
 export const NavBar = ()  => {
     const pages = [
         {label:'Home', icon: HomeIcon, path:'/home'},
@@ -43,6 +45,12 @@ export const NavBar = ()  => {
     const handleCloseUserMenu = () => {
         setAnchorElUser(null);
     };
+
+    const handleLogout = () => {
+        window.localStorage.setItem('token', '')
+        navigate('/')
+    }
+
     return (
         <AppBar position="static">
             <Container maxWidth="xl">
@@ -53,7 +61,7 @@ export const NavBar = ()  => {
                         component="div"
                         sx={{ mr: 2, display: { xs: 'none', md: 'flex' } }}
                     >
-                        RIDERS
+                        <img src={logo} className="nav-logo" alt='Riders Logo'/>
                     </Typography>
 
                     <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
@@ -89,23 +97,31 @@ export const NavBar = ()  => {
                                 <MenuItem key={page.label} onClick={handleCloseNavMenu}>
                                     <Typography textAlign="center">{page.label}</Typography>
                                 </MenuItem>
+
                             ))}
                         </Menu>
                     </Box>
                     <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
                         {pages.map((page) => (
-                                <Tooltip title={page.label}>
-                                    <Button
-                                        key={page.label}
-                                        onClick={()=> navigate(page.path)}
-                                        sx={{ my: 2, color: 'white', display: 'block' }}
-                                    >
-                                        <SvgIcon component={page.icon} />
-                                    </Button>
-                                </Tooltip>
+                            <Tooltip title={page.label}>
+                                <Button
+                                    key={page.label}
+                                    onClick={()=> navigate(page.path)}
+                                    sx={{ my: 2, color: 'white', display: 'block' }}
+                                >
+                                    <SvgIcon component={page.icon} />
+                                </Button>
+                            </Tooltip>
                         ))}
                     </Box>
-
+                    <Typography
+                        variant="h6"
+                        noWrap
+                        component="div"
+                        sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}
+                    >
+                        <img src={logo} className="nav-logo" alt='Riders Logo'/>
+                    </Typography>
                     <Box sx={{ flexGrow: 0 }}>
                         <Tooltip title="Open options">
                             <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
@@ -129,7 +145,7 @@ export const NavBar = ()  => {
                             onClose={handleCloseUserMenu}
                         >
                             {settings.map((setting) => (
-                                <MenuItem key={setting.label} onClick={()=> navigate(setting.path)}>
+                                <MenuItem key={setting.label} onClick={()=> handleLogout()}>
                                     <Typography textAlign="center">{setting.label}</Typography>
                                 </MenuItem>
                             ))}

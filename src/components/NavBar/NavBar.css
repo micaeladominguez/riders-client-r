@@ -1,8 +1,6 @@
-.loginLogo {
-    width: 100%;
-    margin-bottom: 20px;
-    color: white;
-
+.nav-logo {
+    filter: grayscale(100%) brightness(500%);
+    width: 50px;
 }
 .formCentre {
     display: flex;
