@@ -39,11 +39,33 @@ export const LOGIN_RIDER = gql`
         }
   }
 `;
-export const GET_CALLS = gql `
-    query {
-      getCall {
-        calls
+export const GET_CALLS = gql`
+   query GetCalls($lat: Float!, $long: Float!) {
+    getAvailableCalls(input: {
+        lat: $lat,
+        long: $long,
+        })
+        {
+             id
+            callerRatingStars
+            requestedVehicles{
+                bicycle
+                motorcycle
+                car
+                van
       }
-    }
-  
+            priceInCents
+            description
+            startLocation{
+               address
+               lat
+               long
+            }
+           finishLocation{
+            address
+            lat
+            long
+            }
+        }
+  }
 `;

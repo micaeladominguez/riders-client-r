@@ -3,31 +3,29 @@ import ReactDOM from 'react-dom';
 import {
     ApolloClient,
     InMemoryCache,
-    ApolloProvider,
-    useQuery,
-    gql
+    ApolloProvider, ApolloLink,createHttpLink
 } from "@apollo/client";
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
-function getTokens() {
-    return JSON.parse(window.localStorage.getItem('token'));
-}
+const customFetch = (uri, options) => {
+    return fetch(uri, {
+        ...options,
+        headers: {
+            ...options.headers,
+            "auth-token": window.localStorage.getItem('token'),
+        }
+    });
+};
+const fetchLink = createHttpLink({
+    uri: "http://localhost:5000/rider",
+    fetch: customFetch
+});
 
 const client = new ApolloClient({
-    uri: 'http://localhost:5000/rider',
+    link: ApolloLink.from([fetchLink]),
     cache: new InMemoryCache(),
-    request: operation => {
-        const token = getTokens();
-        if (token) {
-            operation.setContext({
-                headers: {
-                    "token": token,
-                }
-            });
-        }
-    }
 });
 
 ReactDOM.render(

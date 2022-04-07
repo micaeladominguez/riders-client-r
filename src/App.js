@@ -5,21 +5,39 @@ import {ThemeProvider} from "@mui/system";
 import {ridersTheme} from "./util/ridersTheme";
 import SignUpPage from "./pages/signUp/SignUpPage";
 import HomePage from "./pages/home/HomePage";
-import {createContext} from "react";
+import {createContext, useMemo, useState} from "react";
 import CallCardPage from "./pages/callCard/CallCardPage";
 
 export const CallContext = createContext({
     call: {
-        callerName: "CallerName",
-        addressAndHour: "ADDRESS AND HOUR",
-        description: "description",
-        price: "100$",
+        callerRatingStars: 0,
+        description: "",
+        finishLocation: {address: "", lat: 0, long: 0, __typename: "Location"},
+        id: "",
+        priceInCents: 0,
+        requestedVehicles: {bicycle: false, motorcycle: false, car: false, van: false, __typename: "RequestedVehicles"},
+        startLocation: {address: "", lat: 0, long: 0, __typename: "Location"},
     },
-    setCard: () => {}
+    setCall: () => {}
 });
+
 function App() {
+    const [call, setCall] = useState({
+        callerRatingStars: 0,
+        description: "",
+        finishLocation: {address: "", lat: 0, long: 0, __typename: "Location"},
+        id: "",
+        priceInCents: 0,
+        requestedVehicles: {bicycle: false, motorcycle: false, car: false, van: false, __typename: "RequestedVehicles"},
+        startLocation: {address: "", lat: 0, long: 0, __typename: "Location"},
+    });
+    const value = useMemo(
+        () => ({ call, setCall }),
+        [call]
+    );
   return (
-      <ThemeProvider theme={ridersTheme} >
+      <CallContext.Provider value={ value }>
+        <ThemeProvider theme={ridersTheme} >
           <BrowserRouter>
               <Routes>
                   <Route path='/' element={<LoginPage /> } />
@@ -28,7 +46,8 @@ function App() {
                   <Route path='/card' element={<CallCardPage />} />
               </Routes>
           </BrowserRouter>
-      </ThemeProvider>
+        </ThemeProvider>
+      </CallContext.Provider>
   );
 }
 

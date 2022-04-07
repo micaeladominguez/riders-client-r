@@ -23,7 +23,6 @@ const LoginPage = () => {
         password: '',
         showPassword: false,
     });
-
     const navigate = useNavigate()
 
     const  loggedIn = window.localStorage.getItem('token')
