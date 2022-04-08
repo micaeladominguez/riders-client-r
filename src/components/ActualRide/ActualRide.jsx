@@ -1,93 +1,34 @@
-import {useNavigate} from "react-router-dom";
-import Typography from "@mui/material/Typography";
-import Button from "@mui/material/Button";
-import * as React from "react";
-import "./CallCard.css";
-import GradeIcon from '@mui/icons-material/Grade';
-import {IconButton, SvgIcon} from "@mui/material";
-import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
-import QueryBuilderIcon from '@mui/icons-material/QueryBuilder';
-import DescriptionIcon from '@mui/icons-material/Description';
-import LocationOnIcon from '@mui/icons-material/LocationOn';
-import TrendingUpIcon from '@mui/icons-material/TrendingUp';
-import {useContext, useEffect} from "react";
-import {CallContext} from "../../App";
-import CalendarTodayIcon from "@mui/icons-material/CalendarToday";
+import {Button, LinearProgress, SvgIcon, Tooltip} from "@mui/material";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import Avatar from "@mui/material/Avatar";
-import TwoWheelerIcon from '@mui/icons-material/TwoWheeler';
+import TwoWheelerIcon from "@mui/icons-material/TwoWheeler";
 import DirectionsCarIcon from "@mui/icons-material/DirectionsCar";
 import PedalBikeIcon from "@mui/icons-material/PedalBike";
 import AirportShuttleIcon from "@mui/icons-material/AirportShuttle";
-import {useMutation} from "@apollo/client";
-import {ACCEPT_CALL} from "../../util/queries/sessionQueries";
-import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-export const CallCard = ({call, onClose}) => {
-    const date = new Date(call.date);
-    const [acceptRideMutation, {data, loading, error}] = useMutation(ACCEPT_CALL);
-    const navigate = useNavigate();
-    const user = JSON.parse(window.localStorage.getItem('rider'));
-    const home = () => {
-        console.log(onClose);
-        onClose();
-    }
-    const acceptRide = () =>{
-        const response = acceptRideMutation({variables: {callId:call.id}});
-    }
-    const activeRide = () => {
-        navigate('/ActualRide');
-    }
-    useEffect(()=>{
-        console.log('call', call);
-        console.log(onClose);
-        if(call.id === ""){
-            home()
-        }
-    },[])
-    const errorPage = () => {
-        navigate('/errorPage');
-    }
-    return (
+import TrendingUpIcon from "@mui/icons-material/TrendingUp";
+import Typography from "@mui/material/Typography";
+import GradeIcon from "@mui/icons-material/Grade";
+import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
+import CalendarTodayIcon from "@mui/icons-material/CalendarToday";
+import LocationOnIcon from "@mui/icons-material/LocationOn";
+import DescriptionIcon from "@mui/icons-material/Description";
+import './ActualRide.css';
+import * as React from "react";
+import logo from "../../assets/ridersLogo.png";
+import ContactSupportIcon from '@mui/icons-material/ContactSupport';
+import {Box} from "@mui/system";
+export const ActualRide = ({actualRide}) => {
+    const date = new Date(actualRide.call.date);
+    return(
         <div>
-            {
-                error && errorPage()
-            }
-            {
-                data && activeRide()
-            }
-            { !error && call.id !== "" &&
-                <div className="other">
-                    <div className="header-2">
-                        <button className="back-home-button" onClick={()=> home()}>
-                            <SvgIcon component={ArrowBackIcon} sx={{marginLeft:2, color:'white'}} />
-                        </button>
+            <div className="card-items">
+                <Box width="100%" mr={3}>
+                    <LinearProgress variant="determinate" value={50} />
+                </Box>
+            </div>
 
-                        <div className="header-icons">
-                            {(() => {
-                                switch (user.vehicle.type) {
-                                    case 'motorcycle':   return <div >
-                                        <Avatar  component={TwoWheelerIcon} sx={{ bgcolor: "#ee2738", width:50, height:50 }} variant="circular" />
-                                    </div>;
-                                    case 'car' :
-                                        return <div >
-                                            <Avatar  component={DirectionsCarIcon} sx={{ bgcolor: "#ee2738", width:50, height:50 }} variant="circular" />
-                                        </div>;
-                                    case 'bicycle':
-                                        return <div >
-                                            <Avatar  component={PedalBikeIcon} sx={{ bgcolor: "#ee2738", width:50, height:50 }} variant="circular" />
-                                        </div>;
-                                    case 'van':
-                                        return <div >
-                                            <Avatar  component={AirportShuttleIcon} sx={{ bgcolor: "#ee2738", width:50, height:50 }} variant="circular" />
-                                        </div>;
-                                    default:    return  <div >
-                                        <Avatar  component={TwoWheelerIcon} sx={{ bgcolor: "#ee2738", width:50, height:50 }} variant="circular" />
-                                    </div>;
-                                }
-                            })()}
-                            <div className="header-3">More about this ride</div>
-                        </div>
-
-                    </div>
+            <div className="card-items">
+                <div className="other-2">
                     <div className="fields">
                         <div className="components">
                             <div className="components-img">
@@ -98,7 +39,7 @@ export const CallCard = ({call, onClose}) => {
                                     Rating
                                 </Typography>
                                 {(() => {
-                                    switch (call.callerRatingStars) {
+                                    switch (actualRide.call.callerRatingStars) {
                                         case 1:   return <div className="components-img">
                                             <SvgIcon component={GradeIcon} />
                                         </div>;
@@ -140,7 +81,7 @@ export const CallCard = ({call, onClose}) => {
                                     Price
                                 </Typography>
                                 <Typography  >
-                                    { call.priceInCents}
+                                    { actualRide.call.priceInCents}
                                 </Typography>
                             </div>
                         </div>
@@ -166,7 +107,7 @@ export const CallCard = ({call, onClose}) => {
                                     Starting Address
                                 </Typography>
                                 <Typography  >
-                                    {call.startLocation.address}
+                                    {actualRide.call.startLocation.address}
                                 </Typography>
                             </div>
                         </div>
@@ -179,7 +120,7 @@ export const CallCard = ({call, onClose}) => {
                                     Finish Address
                                 </Typography>
                                 <Typography  >
-                                    {call.finishLocation.address}
+                                    {actualRide.call.finishLocation.address}
                                 </Typography>
                             </div>
                         </div>
@@ -192,25 +133,21 @@ export const CallCard = ({call, onClose}) => {
                                     Description
                                 </Typography>
                                 <Typography  >
-                                    {call.description}
+                                    {actualRide.call.description}
                                 </Typography>
                             </div>
                         </div>
                     </div>
-                    <div className="buttons">
-                        <Button
-                            variant="contained"
-                            type="submit"
-                            onClick={() => acceptRide()}
-                            sx={{ mt: 2, mb: 2, backgroundColor: '#e53935', color: 'white', width:'60%'	}}
-                        > Accept Ride </Button>
-                    </div>
-
+                </div>
             </div>
-        }
+            <div className="card-buttons">
+                <div className='update-button'>
+                    <Button variant="contained" color="success" style={{ width:'100%'}}>I arrived to the starting address</Button>
+                    <Button variant="contained" color="error" style={{ width:'100%'}}>Cancel Ride</Button>
+                </div>
+            </div>
+
         </div>
-
-
     );
-
 }
+export default ActualRide;

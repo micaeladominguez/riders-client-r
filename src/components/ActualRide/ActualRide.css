@@ -1,0 +1,82 @@
+.Header-ride{
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    flex-direction: row;
+    margin-top: 50px;
+}
+.app-info{
+    display: flex;
+    justify-content: center;
+    justify-items: auto;
+    align-items: center;
+    flex-direction: row;
+}
+.Header-ride-2{
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    flex-direction: column;
+    margin-back: 50px;
+}
+.image{
+    margin-left: 100px;
+    width: 60px;
+}
+.update-button{
+    max-width: 360px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 20px;
+    justify-content: center;
+    grid-gap: 20px;
+}
+.other-2 {
+    max-width: 360px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    background-color: #ffffff;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid #ee2738;
+    justify-items: center;
+}
+.card-items{
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.card-buttons{
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.delivered-by{
+    max-width: 100px;
+    font-size: 20px;
+    margin-left: 10px;
+    font-family: cursive;
+    font-weight: bold;
+    text-align: center;
+}
+.other-font{
+    max-width: 100px;
+    font-size: 15px;
+    margin-left: 10px;
+    font-family: cursive;
+    font-weight: lighter;
+    text-align: center;
+}
+.icon{
+    align-items: center;
+    margin-top: 50px;
+    margin-right: 100px;
+}

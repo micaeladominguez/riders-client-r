@@ -7,6 +7,7 @@ import SignUpPage from "./pages/signUp/SignUpPage";
 import HomePage from "./pages/home/HomePage";
 import {createContext, useMemo, useState} from "react";
 import CallCardPage from "./pages/callCard/CallCardPage";
+import ErrorPage from "./pages/error/ErrorPage";
 
 export const CallContext = createContext({
     call: {
@@ -44,6 +45,7 @@ function App() {
                   <Route path='/sign-up' element={<SignUpPage /> } />
                   <Route path='/home' element={<HomePage />} />
                   <Route path='/card' element={<CallCardPage />} />
+                  <Route path='/errorPage' element={<ErrorPage />} />
               </Routes>
           </BrowserRouter>
         </ThemeProvider>

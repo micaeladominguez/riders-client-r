@@ -24,7 +24,6 @@ export const NavBar = ()  => {
         {label:'Home', icon: HomeIcon, path:'/home'},
         {label:'Grades', icon: GradeIcon, path: '/'},
         {label:'Notifications',icon:NotificationsIcon, path:'/'},
-        {label: 'Actual-Ride', icon: TwoWheelerIcon, path: '/'}
     ];
     const settings = [
         {label:'Logout', path: '/'}
@@ -95,7 +94,7 @@ export const NavBar = ()  => {
                             }}
                         >
                             {pages.map((page) => (
-                                <MenuItem key={page.label} onClick={handleCloseNavMenu}>
+                                <MenuItem key={page.label} onClick={()=> navigate(page.path)}>
                                     <Typography textAlign="center">{page.label}</Typography>
                                 </MenuItem>
 

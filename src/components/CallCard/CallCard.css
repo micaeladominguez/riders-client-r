@@ -27,32 +27,43 @@
     align-items: center;
     flex-direction: column;
 }
+.header-icons{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+.back-home-button{
+    color: white;
+    background-color: #ee2738;
+    border-color: transparent;
+}
 .other {
-    max-width: 380px;
-    height: 70%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    max-width: 360px;
+    width: 100%;
     display: flex;
     align-items: center;
     flex-direction: column;
     background-color: #ffffff;
-    border-radius: 5%;
-    padding: 15px;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid #ee2738;
+}
+.header-3{
+    font-size: 15px;
+    color: white;
 }
 .buttons {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-direction: row;
-}
-.container {
-    background-image: url(../../assets/mapp.jpg);
-    display: flex;
-    justify-content: space-between;
     align-items: center;
     flex-direction: column;
-    height: 100vh;
-    opacity: 0.8;
+    width: 100%;
 }
-
 .header {
     width: 100%;
     margin-top: 15px;

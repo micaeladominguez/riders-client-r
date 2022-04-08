@@ -4,51 +4,105 @@ import Typography from '@mui/material/Typography';
 import "./CallTab.css";
 import {useNavigate} from "react-router-dom";
 import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
-import {SvgIcon} from "@mui/material";
+import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
+import {Modal, SvgIcon} from "@mui/material";
 import DescriptionIcon from "@mui/icons-material/Description";
 import {useContext} from "react";
 import {CallContext} from "../../App";
-import callCardPage from "../../pages/callCard/CallCardPage";
+import TwoWheelerIcon from '@mui/icons-material/TwoWheeler';
+import Avatar from "@mui/material/Avatar";
+import DirectionsCarIcon from '@mui/icons-material/DirectionsCar';
+import AirportShuttleIcon from '@mui/icons-material/AirportShuttle';
+import PedalBikeIcon from '@mui/icons-material/PedalBike';
+import {CallCard} from "../CallCard/CallCard";
 const CallTab = (callTab) => {
-    const navigate = useNavigate()
-    const { setCall} = useContext(CallContext);
-    const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-        window.localStorage.setItem('call', JSON.stringify(callTab.call))
-        setCall(
-            callTab.call
-        )
-        navigate('/card')
-    };
-    const handleRideAcceptance = () => {
-        navigate('/')
-    }
+    const [open, setOpen] = React.useState(false);
+    const handleOpen = () => setOpen(true);
+    const handleClose = () => setOpen(false);
+    const date = new Date(callTab.call.date);
+    const user = JSON.parse(window.localStorage.getItem('rider'));
     return(
-        <button onClick={ handleSubmit} style={{border: '1px solid #E8E6E0', marginTop: 1.5, borderRadius: '5%', backgroundColor:"white", width:'100%'}}>
+        <div className="flex">
+            <button onClick={ handleOpen} className="card-bottom"  >
+                <div className="header-2">
+                    {(() => {
+                        switch (user.vehicle.type) {
+                            case 'motorcycle':   return <div >
+                                <Avatar  component={TwoWheelerIcon} sx={{ bgcolor: "#ee2738", width:50, height:50 }} variant="circular" />
+                            </div>;
+                            case 'car' :
+                                return <div >
+                                    <Avatar  component={DirectionsCarIcon} sx={{ bgcolor: "#ee2738", width:50, height:50 }} variant="circular" />
+                                </div>;
+                            case 'bicycle':
+                                return <div >
+                                    <Avatar  component={PedalBikeIcon} sx={{ bgcolor: "#ee2738", width:50, height:50 }} variant="circular" />
+                                </div>;
+                            case 'van':
+                                return <div >
+                                    <Avatar  component={AirportShuttleIcon} sx={{ bgcolor: "#ee2738", width:50, height:50 }} variant="circular" />
+                                </div>;
+                            default:    return  <div >
+                                <Avatar  component={TwoWheelerIcon} sx={{ bgcolor: "#ee2738", width:50, height:50 }} variant="circular" />
+                            </div>;
+                        }
+                    })()}
+                </div>
                 <div className="all-grid-tab">
-                    <div className="header-2">POSSIBLE CALL</div>
-                    <div className="fieldsShort">
-                        <SvgIcon component={AttachMoneyIcon} sx={{marginLeft:9}}/>
-                        <Typography sx={{ fontSize: 14, alignItems: 'centre', marginTop: 1, marginRight:9 }} color="text.secondary" gutterBottom>
-                            {callTab.call.priceInCents}
-                        </Typography>
-                    </div>
-                    <div className="fieldsShort">
-                        <SvgIcon component={DescriptionIcon} sx={{marginLeft:9}}/>
-                        <Typography variant="body2" sx={{ fontSize: 14, alignItems: 'centre', marginTop: 1, marginRight:9 }}>
-                            {callTab.call.description}
-                        </Typography>
+                    <div className="info-tab">
+                        <div className="fieldsShort">
+                            <div className="components-img-2">
+                                <SvgIcon component={AttachMoneyIcon} />
+                            </div>
+                            <div className="components-field-2">
+                                <Typography  sx={{ fontWeight: "bold", display:"flex",textAlign: "left"}}>
+                                    Price
+                                </Typography>
+                                <Typography  >
+                                    { callTab.call.priceInCents}
+                                </Typography>
+                            </div>
+                        </div>
+                        <div className="fieldsShort">
+                            <div className="components-img-2">
+                                <SvgIcon component={CalendarTodayIcon} />
+                            </div>
+                            <div className="components-field-2">
+                                <Typography  sx={{ fontWeight: "bold", display:"flex",textAlign: "left"}}>
+                                    Date
+                                </Typography>
+                                <Typography  >
+                                    {date.toString().slice(0,15)}
+                                </Typography>
+                            </div>
+                        </div>
+                        <div className="fieldsShort">
+                            <div className="components-img-2">
+                                <SvgIcon component={DescriptionIcon} />
+                            </div>
+                            <div className="components-field-2">
+                                <Typography  sx={{ fontWeight: "bold", display:"flex",textAlign: "left"}}>
+                                    Description
+                                </Typography>
+                                <Typography  >
+                                    {callTab.call.description}
+                                </Typography>
+                            </div>
+                        </div>
                     </div>
 
                 </div>
-                <div className="all-grid-tab">
-                    <div className="flex-container">
-                        <Button
-                            variant="contained"
-                            onClick={handleRideAcceptance()}
-                            sx={{ mt: 3, mb: 2, marginLeft:2	}}> Accept Ride </Button>
-                    </div>
-                </div>
-        </button>
+            </button>
+            <Modal
+                open={open}
+                onClose={handleClose}
+                aria-labelledby="modal-modal-title"
+                aria-describedby="modal-modal-description"
+            >
+                <CallCard call={callTab.call} onClose={handleClose}/>
+            </Modal>
+        </div>
+
 
 
     );

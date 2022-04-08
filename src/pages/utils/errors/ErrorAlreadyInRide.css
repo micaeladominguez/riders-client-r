@@ -1,0 +1,48 @@
+.headerError {
+    font-size: 40px;
+    font-weight: bold;
+    color: black;
+    display: flex;
+    text-align: left;
+}
+.content-text{
+    font-size: 20px;
+    color: black;
+    display: flex;
+    text-align: left;
+}
+.or-option{
+    font-size: 20px;
+    color: black;
+    display: flex;
+    text-align: left;
+    margin-right: 20px;
+}
+.error-page{
+    display: flex;
+    padding: 30px;
+    justify-content: space-between;
+    flex-direction: column;
+}
+.options{
+    display: flex;
+    padding: 30px;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 30px;
+}
+.buttons-error{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    width: 100%;
+}
+.container-error{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: column;
+    height: 80vh;
+}

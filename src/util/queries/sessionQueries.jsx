@@ -39,6 +39,40 @@ export const LOGIN_RIDER = gql`
         }
   }
 `;
+export const ACCEPT_CALL = gql`
+  mutation AcceptRider($callId: String!) {
+    acceptCall(input: {
+        callId: $callId
+        })
+        {
+           id
+           riderArrivedStartLocation
+           date
+            call {
+               id
+                callerRatingStars
+            requestedVehicles{
+                bicycle
+                motorcycle
+                car
+                van
+            }
+            priceInCents
+            description
+            startLocation{
+                address
+                lat
+                long
+            }
+            finishLocation{
+                address
+                lat
+                long
+            }
+            }
+        }
+  }
+`;
 export const GET_CALLS = gql`
    query GetCalls($lat: Float!, $long: Float!) {
     getAvailableCalls(input: {
@@ -55,6 +89,7 @@ export const GET_CALLS = gql`
                 van
       }
             priceInCents
+            date
             description
             startLocation{
                address
@@ -67,5 +102,55 @@ export const GET_CALLS = gql`
             long
             }
         }
+  }
+`;
+export const GET_RIDER = gql`
+   query GetRider {
+    getRider {
+             id
+             name
+             surname
+             DNI
+             email{
+                address
+             }
+            vehicle{
+              type
+            }
+            rating {
+                stars
+            }
+        }
+  }
+`;
+export const GET_ACTIVE_RIDE = gql`
+   query GetActualRide {
+    getActiveRide {
+            id,
+            call{
+                 id,
+                 callerRatingStars,
+                 requestedVehicles{
+                    bicycle,
+                    motorcycle,
+                    car,
+                    van,
+                 },
+                priceInCents,
+                description,
+                startLocation{
+                    address,
+                    lat,
+                    long
+                },
+                finishLocation {
+                    address,
+                    lat,
+                    long
+                }
+            },
+            riderArrivedStartLocation,
+            date,
+    }
   }
 `;
