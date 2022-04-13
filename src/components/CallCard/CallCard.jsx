@@ -6,12 +6,10 @@ import "./CallCard.css";
 import GradeIcon from '@mui/icons-material/Grade';
 import {IconButton, SvgIcon} from "@mui/material";
 import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
-import QueryBuilderIcon from '@mui/icons-material/QueryBuilder';
 import DescriptionIcon from '@mui/icons-material/Description';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import TrendingUpIcon from '@mui/icons-material/TrendingUp';
 import {useContext, useEffect} from "react";
-import {CallContext} from "../../App";
 import CalendarTodayIcon from "@mui/icons-material/CalendarToday";
 import Avatar from "@mui/material/Avatar";
 import TwoWheelerIcon from '@mui/icons-material/TwoWheeler';
@@ -50,9 +48,6 @@ export const CallCard = ({call, onClose}) => {
         <div>
             {
                 error && errorPage()
-            }
-            {
-                data && activeRide()
             }
             { !error && call.id !== "" &&
                 <div className="other">

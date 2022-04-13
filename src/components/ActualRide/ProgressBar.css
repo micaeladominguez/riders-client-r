@@ -1,0 +1,23 @@
+.container-4 {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    max-width: 450px;
+    width: 100%;
+}
+.circle-completed{
+    border-radius: 50px;
+    border: 1px solid #ee2738;
+    background: #ee2738;
+}
+.circle-not-completed{
+    border-radius: 50px;
+    border: 1px solid #ee2738;
+    background: white;
+}
+.line-not-completed{
+    border: 1px solid #ee2738;
+    margin: 0px;
+}

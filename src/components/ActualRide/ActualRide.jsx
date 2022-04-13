@@ -1,10 +1,4 @@
 import {Button, LinearProgress, SvgIcon, Tooltip} from "@mui/material";
-import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-import Avatar from "@mui/material/Avatar";
-import TwoWheelerIcon from "@mui/icons-material/TwoWheeler";
-import DirectionsCarIcon from "@mui/icons-material/DirectionsCar";
-import PedalBikeIcon from "@mui/icons-material/PedalBike";
-import AirportShuttleIcon from "@mui/icons-material/AirportShuttle";
 import TrendingUpIcon from "@mui/icons-material/TrendingUp";
 import Typography from "@mui/material/Typography";
 import GradeIcon from "@mui/icons-material/Grade";
@@ -14,17 +8,15 @@ import LocationOnIcon from "@mui/icons-material/LocationOn";
 import DescriptionIcon from "@mui/icons-material/Description";
 import './ActualRide.css';
 import * as React from "react";
-import logo from "../../assets/ridersLogo.png";
-import ContactSupportIcon from '@mui/icons-material/ContactSupport';
-import {Box} from "@mui/system";
+import ProgressBar from "./ProgressBar";
+
 export const ActualRide = ({actualRide}) => {
+    const [status, setStatus] = React.useState(0);
     const date = new Date(actualRide.call.date);
     return(
         <div>
-            <div className="card-items">
-                <Box width="100%" mr={3}>
-                    <LinearProgress variant="determinate" value={50} />
-                </Box>
+            <div className="progress-bar">
+                < ProgressBar status={status}/>
             </div>
 
             <div className="card-items">
@@ -141,8 +133,13 @@ export const ActualRide = ({actualRide}) => {
                 </div>
             </div>
             <div className="card-buttons">
+                {console.log(status)}
                 <div className='update-button'>
-                    <Button variant="contained" color="success" style={{ width:'100%'}}>I arrived to the starting address</Button>
+                    {status === 0 && <Button variant="contained" color="success" style={{ width:'100%'}} onClick={() => setStatus(status + 1)}>I arrived to the starting address</Button>}
+                    {status === 1 && <Button variant="contained" color="success" style={{ width:'100%'}} onClick={() => setStatus(status + 1)}>I finish the task</Button>}
+                    {status === 2 && <Button variant="contained" color="success" style={{ width:'100%'}} onClick={() => setStatus(status + 1)}>I arrived to the last address</Button>}
+                    {status === 3 &&  <Button variant="contained" color="success" style={{ width:'100%'}} onClick={() => setStatus(status + 1)}>I finish the task</Button>}
+                    {status >= 4 &&   <Button variant="contained" color="success" style={{ width:'100%'}} onClick={() => setStatus(status + 1)}>Back Home</Button>}
                     <Button variant="contained" color="error" style={{ width:'100%'}}>Cancel Ride</Button>
                 </div>
             </div>
