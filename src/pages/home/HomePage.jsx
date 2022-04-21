@@ -1,4 +1,3 @@
-import {NavBar} from "/home/mica/faculty/lab1/riders-client-r/src/components/NavBar/NavBar.jsx";
 import * as React from "react";
 import {useEffect, useState} from "react";
 import Loading from "../utils/loading/Loading";
@@ -6,6 +5,7 @@ import {useQuery} from "@apollo/client";
 import {GET_ACTIVE_RIDE, GET_RIDER} from "../../util/queries/sessionQueries";
 import Filter from "./Filter";
 import ActualRide from "../../components/ActualRide/ActualRide";
+import {NavBar} from "../../components/NavBar/NavBar";
 const HomePage = (rider) => {
     const [lat, setLat] = useState(null);
     const [lng, setLng] = useState(null);

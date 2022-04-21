@@ -1,5 +1,5 @@
 import React from "react";
-import '/home/mica/faculty/lab1/riders-client-r/src/pages/utils/errors/ErrorAlreadyInRide.css';
+import  '../errors/ErrorAlreadyInRide.css';
 import Button from "@mui/material/Button";
 import {useNavigate} from "react-router-dom";
 const LandingNotification = () => {

@@ -1,6 +1,6 @@
-import {NavBar} from "/home/mica/faculty/lab1/riders-client-r/src/components/NavBar/NavBar.jsx";
 import * as React from "react";
 import ErrorAlreadyInRide from "../utils/errors/ErrorAlreadyInRide";
+import {NavBar} from "../../components/NavBar/NavBar";
 const ErrorPage = () => {
     return (
         <div>
