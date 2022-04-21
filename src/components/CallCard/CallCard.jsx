@@ -30,10 +30,9 @@ export const CallCard = ({call, onClose}) => {
     }
     const acceptRide = () =>{
         const response = acceptRideMutation({variables: {callId:call.id}});
+        navigate('/notification');
     }
-    const activeRide = () => {
-        navigate('/ActualRide');
-    }
+
     useEffect(()=>{
         console.log('call', call);
         console.log(onClose);

@@ -87,7 +87,7 @@ export const GET_CALLS = gql`
                 motorcycle
                 car
                 van
-      }
+            }
             priceInCents
             date
             description

@@ -7,49 +7,53 @@ import SignUpPage from "./pages/signUp/SignUpPage";
 import HomePage from "./pages/home/HomePage";
 import {createContext, useMemo, useState} from "react";
 import CallCardPage from "./pages/callCard/CallCardPage";
-import ErrorPage from "./pages/error/ErrorPage";
+import ErrorPage from "./pages/utilsPages/ErrorPage";
+import {onError} from "apollo-link-error";
+import LandingNotificationPage from "./pages/utilsPages/LandingNotificationPage";
 
-export const CallContext = createContext({
-    call: {
-        callerRatingStars: 0,
-        description: "",
-        finishLocation: {address: "", lat: 0, long: 0, __typename: "Location"},
+export const RiderContext = createContext({
+    rider: {
+        DNI: 0,
+        email: {__typename: '', address: ''},
         id: "",
-        priceInCents: 0,
-        requestedVehicles: {bicycle: false, motorcycle: false, car: false, van: false, __typename: "RequestedVehicles"},
-        startLocation: {address: "", lat: 0, long: 0, __typename: "Location"},
+        name: "",
+        rating: {__typename: '', stars: 5},
+        surname: "",
+        vehicle: {__typename: '', type: ''},
     },
-    setCall: () => {}
+    setRider: () => {}
 });
 
 function App() {
-    const [call, setCall] = useState({
-        callerRatingStars: 0,
-        description: "",
-        finishLocation: {address: "", lat: 0, long: 0, __typename: "Location"},
+    const [rider, setRider] = useState({
+        DNI: 0,
+        email: {__typename: '', address: ''},
         id: "",
-        priceInCents: 0,
-        requestedVehicles: {bicycle: false, motorcycle: false, car: false, van: false, __typename: "RequestedVehicles"},
-        startLocation: {address: "", lat: 0, long: 0, __typename: "Location"},
+        name: "",
+        rating: {__typename: '', stars: 5},
+        surname: "",
+        vehicle: {__typename: '', type: ''},
     });
     const value = useMemo(
-        () => ({ call, setCall }),
-        [call]
+        () => ({ rider, setRider }),
+        [rider]
     );
+
   return (
-      <CallContext.Provider value={ value }>
+      <RiderContext.Provider value={ value }>
         <ThemeProvider theme={ridersTheme} >
           <BrowserRouter>
               <Routes>
                   <Route path='/' element={<LoginPage /> } />
                   <Route path='/sign-up' element={<SignUpPage /> } />
-                  <Route path='/home' element={<HomePage />} />
+                  <Route path='/home' element={<HomePage rider={rider}/>} />
                   <Route path='/card' element={<CallCardPage />} />
                   <Route path='/errorPage' element={<ErrorPage />} />
+                  <Route path='/notification' element={<LandingNotificationPage/>} />
               </Routes>
           </BrowserRouter>
         </ThemeProvider>
-      </CallContext.Provider>
+      </RiderContext.Provider>
   );
 }
 

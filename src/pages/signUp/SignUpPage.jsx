@@ -30,12 +30,17 @@ const SignUpPage = () => {
         vehicle: '',
     });
 
+    const [errorMessage, setErrorMessage] = useState('')
 
     const navigate = useNavigate()
-    const [signup, {data, loading, error}] = useMutation(REGISTER_RIDER)
-
-
-
+    const [signup, {data, loading, error}] = useMutation(REGISTER_RIDER , {
+        onError: (e) => setErrorMessage(e.message),
+        onCompleted: (res) => {
+            console.log(res);
+            setErrorMessage('')
+            navigate('/')
+        },
+    })
 
 
     const handleChange =(prop) => (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -69,10 +74,12 @@ const SignUpPage = () => {
                 surname: values.surname,
                 DNI: parseInt(values.dni) ,
                 vehicleType: values.vehicle }})
-        console.log(response);
-        navigate('/')
-    };
 
+    };
+    const labelStyle = {
+        display: 'block',
+        color: 'red',
+    }
 
     return (
         <Container component="main" maxWidth="sm" className={'cover-screen'}>
@@ -172,8 +179,7 @@ const SignUpPage = () => {
                             />
                         </FormControl>
 
-                        <label className={'validationLabel'} id='passwordLabel'>Invalid password or Email</label>
-
+                        <label style={labelStyle} id='passwordLabel'>{errorMessage}</label>
                         <Button
                             type="submit"
                             fullWidth

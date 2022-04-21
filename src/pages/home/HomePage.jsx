@@ -2,11 +2,11 @@ import {NavBar} from "/home/mica/faculty/lab1/riders-client-r/src/components/Nav
 import * as React from "react";
 import {useEffect, useState} from "react";
 import Loading from "../utils/loading/Loading";
-import Tab from "./Tab";
 import {useQuery} from "@apollo/client";
-import {GET_RIDER} from "../../util/queries/sessionQueries";
+import {GET_ACTIVE_RIDE, GET_RIDER} from "../../util/queries/sessionQueries";
 import Filter from "./Filter";
-const HomePage = () => {
+import ActualRide from "../../components/ActualRide/ActualRide";
+const HomePage = (rider) => {
     const [lat, setLat] = useState(null);
     const [lng, setLng] = useState(null);
     const [status, setStatus] = useState(null);
@@ -30,18 +30,12 @@ const HomePage = () => {
 
     useEffect(() => {
         getLocation();
-    }, []);
-    const { loading, data, error } =  useQuery(GET_RIDER, { onCompleted:(data)=>{
-            if(data) {
-                window.localStorage.setItem('rider', JSON.stringify(data.getRider))
-            }
-        }});
+    }, [rider]);
     return (
         <div>
             <NavBar />
             {(status === "Locating..." || lat === null || lng === null) && <Loading /> }
-            {(status === "Ok" && lat !== null && lng !== null) && <Filter address={{lat: lat, lng: lng}}  />}
-
+            {(status === "Ok" && lat !== null && lng !== null) && ( <Filter address={{lat: lat, lng: lng}}  />)}
         </div>
     )
 }

@@ -15,6 +15,7 @@ export const ActualRide = ({actualRide}) => {
     const date = new Date(actualRide.call.date);
     return(
         <div>
+
             <div className="progress-bar">
                 < ProgressBar status={status}/>
             </div>
@@ -133,13 +134,11 @@ export const ActualRide = ({actualRide}) => {
                 </div>
             </div>
             <div className="card-buttons">
-                {console.log(status)}
                 <div className='update-button'>
-                    {status === 0 && <Button variant="contained" color="success" style={{ width:'100%'}} onClick={() => setStatus(status + 1)}>I arrived to the starting address</Button>}
-                    {status === 1 && <Button variant="contained" color="success" style={{ width:'100%'}} onClick={() => setStatus(status + 1)}>I finish the task</Button>}
-                    {status === 2 && <Button variant="contained" color="success" style={{ width:'100%'}} onClick={() => setStatus(status + 1)}>I arrived to the last address</Button>}
-                    {status === 3 &&  <Button variant="contained" color="success" style={{ width:'100%'}} onClick={() => setStatus(status + 1)}>I finish the task</Button>}
-                    {status >= 4 &&   <Button variant="contained" color="success" style={{ width:'100%'}} onClick={() => setStatus(status + 1)}>Back Home</Button>}
+                    {status === 0 && <Button variant="contained"  style={{ width:'100%', backgroundColor: '#008000'}} onClick={() => setStatus(status + 1)}>I arrived to the starting address</Button>}
+                    {status === 1 && <Button variant="contained"  style={{ width:'100%', backgroundColor: '#008000'}} onClick={() => setStatus(status + 1)}>I finish the task</Button>}
+                    {status === 2 && <Button variant="contained"  style={{ width:'100%', backgroundColor: '#008000'}} onClick={() => setStatus(status + 1)}>I arrived to the last address</Button>}
+                    {status >= 3 &&  <Button variant="contained"  style={{ width:'100%', backgroundColor: '#008000'}} onClick={() => setStatus(status + 1)}>Back Home</Button>}
                     <Button variant="contained" color="error" style={{ width:'100%'}}>Cancel Ride</Button>
                 </div>
             </div>

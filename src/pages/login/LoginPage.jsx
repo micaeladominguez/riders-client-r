@@ -9,13 +9,14 @@ import {
     OutlinedInput,
     ThemeProvider, Typography
 } from "@mui/material";
-import {useEffect, useState} from "react";
+import {useContext, useEffect, useState} from "react";
 import logo from '../../assets/ridersLogo.png'
 import {Visibility, VisibilityOff} from "@mui/icons-material";
 import './LoginPage.css'
 import * as React from "react";
-import {LOGIN_RIDER} from "../../util/queries/sessionQueries";
-import {useMutation} from "@apollo/client";
+import {GET_RIDER, LOGIN_RIDER} from "../../util/queries/sessionQueries";
+import {useLazyQuery, useMutation, useQuery} from "@apollo/client";
+import {RiderContext} from "../../App";
 
 const LoginPage = () => {
     const [values, setValues] = useState({
@@ -24,15 +25,13 @@ const LoginPage = () => {
         showPassword: false,
     });
     const navigate = useNavigate()
-
-    const  loggedIn = window.localStorage.getItem('token')
-
+    const loggedIn = window.localStorage.getItem('token')
+    const [errorMessage, setErrorMessage] = useState('')
     useEffect(() =>{
         if (loggedIn) navigate('/home')
-    }, [loggedIn])
+    }, [loggedIn]);
 
-    const [login, {data, loading, error}] = useMutation(LOGIN_RIDER)
-
+    const [login, ] = useMutation(LOGIN_RIDER, { onError: (e) => setErrorMessage(e.message)})
     const handleChange =(prop) => (event: React.ChangeEvent<HTMLInputElement>) => {
         setValues({ ...values, [prop]: event.target.value });
     };
@@ -43,20 +42,30 @@ const LoginPage = () => {
             showPassword: !values.showPassword,
         });
     };
-
+    const { setRider} = useContext(RiderContext);
     const handleMouseDownPassword = (event: React.MouseEvent<HTMLButtonElement>) => {
         event.preventDefault();
     };
+    const [getRider, ] = useLazyQuery(GET_RIDER);
 
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         const response = await login({variables: {email: values.email, password: values.password}})
-        const token = response.data.logInRider.token
-        console.log(token)
-        window.localStorage.setItem('token', token)
-        navigate('/home')
+        if(response.data) {
+            const token = response.data.logInRider.token;
+            window.localStorage.setItem('token', token)
+            const riderResponse = await getRider();
+            const riderResponded = riderResponse.data.getRider;
+            console.log(riderResponded);
+            setRider(riderResponded);
+            window.localStorage.setItem('rider', JSON.stringify(riderResponded))
+            navigate('/home')
+        }
     };
-
+    const labelStyle = {
+        display: 'block',
+        color: 'red',
+    }
 
 
     return (
@@ -110,7 +119,7 @@ const LoginPage = () => {
                                     label="Password"
                                 />
                             </FormControl>
-                            <label className={'validationLabel'} id='passwordLabel'>Invalid password or Email</label>
+                            <label style={labelStyle} id='passwordLabel'>{errorMessage}</label>
                             <FormControlLabel
                                 control={<Checkbox value="remember" color="primary" />}
                                 label="Remember me"
