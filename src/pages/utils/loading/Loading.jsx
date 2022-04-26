@@ -1,7 +1,6 @@
 import React from "react";
 import ReactLoading from "react-loading";
 import "./Loading.css";
-import {Typography} from "@mui/material";
 
 const Loading = () => {
     return (

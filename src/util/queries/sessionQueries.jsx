@@ -154,3 +154,11 @@ export const GET_ACTIVE_RIDE = gql`
     }
   }
 `;
+
+export const GET_RIDER_STATUS = gql`
+   query GetRiderStatus {
+    getRiderRideStatus {
+        inRide,
+    }
+  }
+`;

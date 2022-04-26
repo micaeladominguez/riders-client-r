@@ -25,7 +25,6 @@ export const CallCard = ({call, onClose}) => {
     const navigate = useNavigate();
     const user = JSON.parse(window.localStorage.getItem('rider'));
     const home = () => {
-        console.log(onClose);
         onClose();
     }
     const acceptRide = () =>{

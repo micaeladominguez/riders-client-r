@@ -1,12 +1,9 @@
 import * as React from "react";
 import {useEffect, useState} from "react";
 import Loading from "../utils/loading/Loading";
-import {useQuery} from "@apollo/client";
-import {GET_ACTIVE_RIDE, GET_RIDER} from "../../util/queries/sessionQueries";
 import Filter from "./Filter";
-import ActualRide from "../../components/ActualRide/ActualRide";
 import {NavBar} from "../../components/NavBar/NavBar";
-const HomePage = (rider) => {
+const HomePage = () => {
     const [lat, setLat] = useState(null);
     const [lng, setLng] = useState(null);
     const [status, setStatus] = useState(null);
@@ -30,7 +27,7 @@ const HomePage = (rider) => {
 
     useEffect(() => {
         getLocation();
-    }, [rider]);
+    }, []);
     return (
         <div>
             <NavBar />

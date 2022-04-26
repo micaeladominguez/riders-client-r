@@ -1,5 +1,5 @@
-import {useState} from "react";
-import {useQuery} from "@apollo/client";
+import {useEffect, useState} from "react";
+import {useLazyQuery, useQuery} from "@apollo/client";
 import {GET_CALLS} from "../../util/queries/sessionQueries";
 import ErrorData from "../utils/errors/ErrorData";
 import * as React from "react";

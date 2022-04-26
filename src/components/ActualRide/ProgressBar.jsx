@@ -17,60 +17,60 @@ const ProgressBar = ({status}) => {
 
     return (
         <div className="container-4">
-                {status === 0 &&
-                    <div className="first">
-                        {(() => {
-                            switch (user.vehicle.type) {
-                                case 'motorcycle':   return <div className="icon-pb-first" >
-                                    <Avatar  component={TwoWheelerIcon} sx={{ color: "#ee2738", backgroundColor: "white", width:50, height:50 }}  />
+            {status === 0 &&
+                <div className="first">
+                    {(() => {
+                        switch (user.vehicle.type) {
+                            case 'motorcycle':   return <div className="icon-pb-first" >
+                                <Avatar  component={TwoWheelerIcon} sx={{ color: "#ee2738", backgroundColor: "white", width:50, height:50 }}  />
+                            </div>;
+                            case 'car' :
+                                return <div className="icon-pb-first">
+                                    <Avatar  component={DirectionsCarIcon} sx={{ color: "#ee2738", backgroundColor: "white", width:50, height:50 }}  />
                                 </div>;
-                                case 'car' :
-                                    return <div className="icon-pb-first">
-                                        <Avatar  component={DirectionsCarIcon} sx={{ color: "#ee2738", backgroundColor: "white", width:50, height:50 }}  />
-                                    </div>;
-                                case 'bicycle':
-                                    return <div className="icon-pb-first" >
-                                        <Avatar  component={PedalBikeIcon} sx={{ color: "#ee2738", backgroundColor: "white", width:50, height:50 }}  />
-                                    </div>;
-                                case 'van':
-                                    return <div className="icon-pb-first">
-                                        <Avatar  component={AirportShuttleIcon} sx={{ color: "#ee2738", backgroundColor: "white", width:50, height:50 }} />
-                                    </div>;
-                                default:    return  <div className="icon-pb-first">
-                                    <Avatar  component={TwoWheelerIcon} sx={{ color: "#ee2738", backgroundColor: "white", width:50, height:50 }}  />
+                            case 'bicycle':
+                                return <div className="icon-pb-first" >
+                                    <Avatar  component={PedalBikeIcon} sx={{ color: "#ee2738", backgroundColor: "white", width:50, height:50 }}  />
                                 </div>;
-                            }
-                        })()}
-                        <div className="container-4">
-                            <div className="info" style={{marginRight:8}}>
+                            case 'van':
+                                return <div className="icon-pb-first">
+                                    <Avatar  component={AirportShuttleIcon} sx={{ color: "#ee2738", backgroundColor: "white", width:50, height:50 }} />
+                                </div>;
+                            default:    return  <div className="icon-pb-first">
+                                <Avatar  component={TwoWheelerIcon} sx={{ color: "#ee2738", backgroundColor: "white", width:50, height:50 }}  />
+                            </div>;
+                        }
+                    })()}
+                    <div className="container-4">
+                        <div className="info" style={{marginRight:8}}>
 
-                                <Box sx={{ width: '100%' }}>
-                                    <LinearProgress sx={{backgroundColor:'#D3D3D3'}} />
-                                </Box>
-                                <div className="text">
-                                    Starting
-                                </div>
+                            <Box sx={{ width: '100%' }}>
+                                <LinearProgress sx={{backgroundColor:'#D3D3D3'}} />
+                            </Box>
+                            <div className="text">
+                                Starting
                             </div>
-                            <div className="info" style={{marginRight:8}}>
-                                <Box sx={{ width: '100%' }}>
-                                    <LinearProgress  value={0}  variant="determinate" sx={{backgroundColor:'#D3D3D3'}} />
-                                </Box>
-                                <div className="text">
-                                    Picking
-                                </div>
-                            </div>
-                            <div className="info" >
-                                <Box sx={{ width: '100%' }}>
-                                    <LinearProgress  value={0}  variant="determinate" sx={{backgroundColor:'#D3D3D3'}} />
-                                </Box>
-                                <div className="text">
-                                    Delivering
-                                </div>
-                            </div>
-
                         </div>
+                        <div className="info" style={{marginRight:8}}>
+                            <Box sx={{ width: '100%' }}>
+                                <LinearProgress  value={0}  variant="determinate" sx={{backgroundColor:'#D3D3D3'}} />
+                            </Box>
+                            <div className="text">
+                                Picking
+                            </div>
+                        </div>
+                        <div className="info" >
+                            <Box sx={{ width: '100%' }}>
+                                <LinearProgress  value={0}  variant="determinate" sx={{backgroundColor:'#D3D3D3'}} />
+                            </Box>
+                            <div className="text">
+                                Delivering
+                            </div>
+                        </div>
+
                     </div>
-                }
+                </div>
+            }
             {status === 1 &&
                 <div className="middle">
                     <div >
