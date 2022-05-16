@@ -15,11 +15,11 @@ import DirectionsCarIcon from '@mui/icons-material/DirectionsCar';
 import AirportShuttleIcon from '@mui/icons-material/AirportShuttle';
 import PedalBikeIcon from '@mui/icons-material/PedalBike';
 import {CallCard} from "../CallCard/CallCard";
-const CallTab = (callTab) => {
+const CallTab = ({call}) => {
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
-    const date = new Date(callTab.call.date);
+    const date = new Date(call.date);
     const user = JSON.parse(window.localStorage.getItem('rider'));
     return(
         <div className="flex">
@@ -59,7 +59,7 @@ const CallTab = (callTab) => {
                                     Price
                                 </Typography>
                                 <Typography  >
-                                    { callTab.call.priceInCents}
+                                    { call.priceInCents}
                                 </Typography>
                             </div>
                         </div>
@@ -85,7 +85,7 @@ const CallTab = (callTab) => {
                                     Description
                                 </Typography>
                                 <Typography  >
-                                    {callTab.call.description}
+                                    {call.description}
                                 </Typography>
                             </div>
                         </div>
@@ -99,7 +99,7 @@ const CallTab = (callTab) => {
                 aria-labelledby="modal-modal-title"
                 aria-describedby="modal-modal-description"
             >
-                <CallCard call={callTab.call} onClose={handleClose}/>
+                <CallCard call={call} onClose={handleClose} />
             </Modal>
         </div>
 

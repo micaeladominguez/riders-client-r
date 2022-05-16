@@ -1,7 +1,10 @@
 import React from "react";
 import './ErrorData.css'
 import Button from "@mui/material/Button";
-const ErrorData = ({refresh}) => {
+const ErrorData = () => {
+    const refresh = () => {
+        window.location.reload();
+    }
 
     return (
         <div className="distribution">

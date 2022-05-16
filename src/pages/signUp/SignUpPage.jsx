@@ -43,7 +43,7 @@ const SignUpPage = () => {
     })
 
 
-    const handleChange =(prop) => (event: React.ChangeEvent<HTMLInputElement>) => {
+    const handleChange =(prop) => (event) => {
         setValues({ ...values, [prop]: event.target.value });
         console.log(values);
     };
@@ -64,11 +64,11 @@ const SignUpPage = () => {
         { value: 'van', label: 'Van' }
     ];
 
-    const handleMouseDownPassword = (event: React.MouseEvent<HTMLButtonElement>) => {
+    const handleMouseDownPassword = (event) => {
         event.preventDefault();
     };
 
-    const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
         const response = await signup({variables: {email: values.email, password: values.password, name: values.name,
                 surname: values.surname,

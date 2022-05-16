@@ -1,17 +1,15 @@
 import {useEffect, useState} from "react";
 import {useLazyQuery, useQuery} from "@apollo/client";
-import {GET_ACTIVE_RIDE, GET_CALLS, GET_RIDER_STATUS} from "../../util/queries/sessionQueries";
-import ErrorData from "../utils/errors/ErrorData";
+import { GET_RIDER_STATUS} from "../../util/queries/sessionQueries";
 import * as React from "react";
-import CallTab from "../../components/CallTab/CallTab";
 import './Tab.css';
 import ActualRide from "../../components/ActualRide/ActualRide";
 import Tab from "./Tab";
-import { onError } from "apollo-link-error";
 import Loading from "../utils/loading/Loading";
 
-const Filter = (address) => {
+const Filter = ({address}) => {
     const [riderState, setRiderState] = useState(null);
+
     const [getRiderState, ] = useLazyQuery(GET_RIDER_STATUS);
     const setter = async () => {
         const response = await getRiderState();
@@ -27,7 +25,7 @@ const Filter = (address) => {
         <div >
             { riderState === null && <Loading />}
             { riderState === true  &&  <ActualRide  /> }
-            { riderState === false && <Tab address={address.address} />}
+            { riderState === false && <Tab address={address} />}
         </div>
     );
 

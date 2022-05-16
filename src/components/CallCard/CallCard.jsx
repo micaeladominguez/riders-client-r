@@ -33,8 +33,6 @@ export const CallCard = ({call, onClose}) => {
     }
 
     useEffect(()=>{
-        console.log('call', call);
-        console.log(onClose);
         if(call.id === ""){
             home()
         }

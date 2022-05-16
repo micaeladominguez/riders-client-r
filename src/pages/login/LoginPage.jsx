@@ -10,9 +10,9 @@ import {
     ThemeProvider, Typography
 } from "@mui/material";
 import {useContext, useEffect, useState} from "react";
-import logo from '../../assets/ridersLogo.png'
+import logo from '../../assets/ridersLogo.png';
 import {Visibility, VisibilityOff} from "@mui/icons-material";
-import './LoginPage.css'
+import "./LoginPage.css"
 import * as React from "react";
 import {GET_RIDER, LOGIN_RIDER} from "../../util/queries/sessionQueries";
 import {useLazyQuery, useMutation, useQuery} from "@apollo/client";
@@ -32,7 +32,7 @@ const LoginPage = () => {
     }, [loggedIn]);
 
     const [login, ] = useMutation(LOGIN_RIDER, { onError: (e) => setErrorMessage(e.message)})
-    const handleChange =(prop) => (event: React.ChangeEvent<HTMLInputElement>) => {
+    const handleChange =(prop) => (event) => {
         setValues({ ...values, [prop]: event.target.value });
     };
 
@@ -43,12 +43,12 @@ const LoginPage = () => {
         });
     };
     const { setRider} = useContext(RiderContext);
-    const handleMouseDownPassword = (event: React.MouseEvent<HTMLButtonElement>) => {
+    const handleMouseDownPassword = (event) => {
         event.preventDefault();
     };
     const [getRider, ] = useLazyQuery(GET_RIDER);
 
-    const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
         const response = await login({variables: {email: values.email, password: values.password}})
         if(response.data) {
@@ -80,7 +80,7 @@ const LoginPage = () => {
                             alignItems: 'center',
                         }}
                     >
-                        <img src={logo} className={'loginLogo'}  alt='Riders logo'/>
+                        {<img src={logo} className={'loginLogo'}  alt='Riders logo'/>}
                         <Typography component="h1" variant="h5">
                             Sign in
                         </Typography>
@@ -119,12 +119,13 @@ const LoginPage = () => {
                                     label="Password"
                                 />
                             </FormControl>
-                            <label style={labelStyle} id='passwordLabel'>{errorMessage}</label>
+                            <label data-testid="errorMessage" style={labelStyle} id='passwordLabel'>{errorMessage}</label>
                             <FormControlLabel
                                 control={<Checkbox value="remember" color="primary" />}
                                 label="Remember me"
                             />
                             <Button
+                                data-testid="sign-in-bottom"
                                 type="submit"
                                 fullWidth
                                 variant="contained"

@@ -24,7 +24,6 @@ const HomePage = () => {
             });
         }
     }
-
     useEffect(() => {
         getLocation();
     }, []);
@@ -32,7 +31,7 @@ const HomePage = () => {
         <div>
             <NavBar />
             {(status === "Locating..." || lat === null || lng === null) && <Loading /> }
-            {(status === "Ok" && lat !== null && lng !== null) && ( <Filter address={{lat: lat, lng: lng}}  />)}
+            {(status === "Ok" && lat !== null && lng !== null) && ( <Filter address={{lat: lat, lng: lng}}   />)}
         </div>
     )
 }

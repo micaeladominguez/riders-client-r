@@ -17,7 +17,6 @@
     "apollo-link-error": "^1.1.13",
     "graphql": "^16.3.0",
     "react": "^17.0.2",
-    "react-async-select": "^0.2.6",
     "react-dom": "^17.0.2",
     "react-loading": "^2.0.3",
     "react-router-dom": "^6.2.2",
@@ -29,14 +28,30 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "jest",
     "eject": "react-scripts eject"
+  },
+  "babel": {
+    "presets": [
+      "@babel/react",
+      "@babel/env"
+    ],
+    "plugins": [
+      "@babel/proposal-class-properties",
+      "@babel/plugin-transform-runtime"
+    ]
   },
   "eslintConfig": {
     "extends": [
       "react-app",
       "react-app/jest"
     ]
+  },
+  "jest": {
+    "testEnvironment": "jsdom",
+    "moduleNameMapper": {
+      ".+\\.(css|styl|less|sass|scss|png|jpg|ttf|woff|woff2)$": "identity-obj-proxy"
+    }
   },
   "browserslist": {
     "production": [
@@ -49,5 +64,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "enzyme": "^3.11.0"
   }
 }

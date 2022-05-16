@@ -6,6 +6,7 @@ const LandingNotification = () => {
     const navigate = useNavigate();
     const home = () => {
         navigate('/home');
+        window.location.reload();
     }
     const cancelRide = () => {
         //TODO
