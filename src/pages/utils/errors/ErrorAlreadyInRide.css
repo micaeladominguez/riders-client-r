@@ -26,11 +26,9 @@
 }
 .options{
     display: flex;
-    padding: 30px;
-    justify-content: space-between;
+    margin-top: 10px;
     align-items: center;
     flex-direction: column;
-    margin-top: 30px;
 }
 .buttons-error{
     display: flex;
@@ -40,9 +38,10 @@
     width: 100%;
 }
 .container-error{
+    margin-top: 20px;
     display: flex;
     align-items: center;
     justify-content: space-between;
     flex-direction: column;
-    height: 80vh;
+
 }

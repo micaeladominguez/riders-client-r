@@ -39,6 +39,75 @@ export const LOGIN_RIDER = gql`
         }
   }
 `;
+export const FINISH_RIDE = gql`
+  mutation FinishRide($callerDNI:Int! ) {
+    finishRide(input: {
+        callerDNI: $callerDNI
+    }){
+            id
+           riderArrivedStartLocation
+           date
+           active
+            call {
+               id
+                callerRatingStars
+            requestedVehicles{
+                bicycle
+                motorcycle
+                car
+                van
+            }
+            priceInCents
+            description
+            startLocation{
+                address
+                lat
+                long
+            }
+            finishLocation{
+                address
+                lat
+                long
+            }
+            }
+        }
+        
+  }
+`;
+export const UPDATE_RIDER_FIRST_LOCATION = gql`
+  mutation UpdateRiderArrivedFirstLocation {
+    updateRiderArrivedFirstLocation
+       {
+            id
+           riderArrivedStartLocation
+           date
+           active
+            call {
+               id
+                callerRatingStars
+            requestedVehicles{
+                bicycle
+                motorcycle
+                car
+                van
+            }
+            priceInCents
+            description
+            startLocation{
+                address
+                lat
+                long
+            }
+            finishLocation{
+                address
+                lat
+                long
+            }
+            }
+        }
+        
+  }
+`;
 export const ACCEPT_CALL = gql`
   mutation AcceptRider($callId: String!) {
     acceptCall(input: {
@@ -127,6 +196,7 @@ export const GET_ACTIVE_RIDE = gql`
    query GetActualRide {
     getActiveRide {
             id,
+            active,
             call{
                  id,
                  callerRatingStars,

@@ -9,6 +9,7 @@ import {createContext, useMemo, useState} from "react";
 import CallCardPage from "./pages/callCard/CallCardPage";
 import ErrorPage from "./pages/utilsPages/ErrorPage";
 import LandingNotificationPage from "./pages/utilsPages/LandingNotificationPage";
+import LandingFinishCallPage from "./pages/utilsPages/LandingFinishCallPage";
 
 export const RiderContext = createContext({
     rider: {
@@ -47,7 +48,8 @@ function App() {
                   <Route path='/home' element={<HomePage rider={rider}/>} />
                   <Route path='/card' element={<CallCardPage />} />
                   <Route path='/errorPage' element={<ErrorPage />} />
-                  <Route path='/notification' element={<LandingNotificationPage/>} />
+                  <Route path='/landingN' element={<LandingNotificationPage/>} />
+                  <Route path='/landingF' element={<LandingFinishCallPage/>} />
                 </Routes>
                 </BrowserRouter>
             </ThemeProvider>

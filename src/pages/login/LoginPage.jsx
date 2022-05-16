@@ -7,7 +7,7 @@ import {
     InputAdornment,
     InputLabel, Link,
     OutlinedInput,
-    ThemeProvider, Typography
+    Typography
 } from "@mui/material";
 import {useContext, useEffect, useState} from "react";
 import logo from '../../assets/ridersLogo.png';
@@ -28,7 +28,10 @@ const LoginPage = () => {
     const loggedIn = window.localStorage.getItem('token')
     const [errorMessage, setErrorMessage] = useState('')
     useEffect(() =>{
-        if (loggedIn) navigate('/home')
+        if (loggedIn){
+            navigate('/home')
+            window.location.reload();
+        }
     }, [loggedIn]);
 
     const [login, ] = useMutation(LOGIN_RIDER, { onError: (e) => setErrorMessage(e.message)})
