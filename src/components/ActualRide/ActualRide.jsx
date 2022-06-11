@@ -60,9 +60,7 @@ export const ActualRide = () => {
             navigate('/landingF');
         },
     })
-    const rateCaller = () => {
 
-    }
     const labelStyle = {
         display: 'block',
         color: 'red',
@@ -93,7 +91,7 @@ export const ActualRide = () => {
 
             {actualRide === null && (<Loading />)}
             {
-                actualRide !== null && status !== 3 &&
+                actualRide !== null && status !== 2 &&
                 <div>
                     <div className="progress-bar">
                         < ProgressBar status={status}/>
@@ -214,15 +212,14 @@ export const ActualRide = () => {
                     <div className="card-buttons">
                         <div className='update-button'>
                             {status === 0 && <Button variant="contained"  style={{ width:'100%', backgroundColor: '#008000'}} onClick={() => arrivedToFirstAddress()}>I arrived to the starting address</Button>}
-                            {status === 1 && <Button variant="contained"  style={{ width:'100%', backgroundColor: '#008000'}} onClick={() => setStatus(status + 1)}>I finish the task</Button>}
-                            {status === 2 && <Button variant="contained"  style={{ width:'100%', backgroundColor: '#008000'}} onClick={() => setStatus(status + 1)}>I arrived to the last address</Button>}
+                            {status === 1 && <Button variant="contained"  style={{ width:'100%', backgroundColor: '#008000'}} onClick={() => setStatus(status + 1)}>I arrived to the last address</Button>}
                             <Button variant="contained" color="error" style={{ width:'100%'}}>Cancel Ride</Button>
                         </div>
                     </div>
                 </div>
             }
             {
-                actualRide !== null && status === 3 && actualRide.active === true &&
+                actualRide !== null && status === 2 && actualRide.active === true &&
                 <div className="info-dni">
                     <div className="field-requirement">
                         <div >

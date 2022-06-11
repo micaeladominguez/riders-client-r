@@ -29,7 +29,7 @@ export const CallCard = ({call, onClose}) => {
     }
     const acceptRide = () =>{
         const response = acceptRideMutation({variables: {callId:call.id}});
-        navigate('/notification');
+        navigate('/landingN');
     }
 
     useEffect(()=>{

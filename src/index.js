@@ -19,7 +19,7 @@ const customFetch = (uri, options) => {
     });
 };
 const fetchLink = createHttpLink({
-    uri: "http://localhost:5000/rider",
+    uri: "http://localhost:8080/rider",
     fetch: customFetch
 });
 

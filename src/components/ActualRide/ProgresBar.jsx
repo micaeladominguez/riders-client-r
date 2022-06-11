@@ -51,14 +51,6 @@ const ProgressBar = ({status}) => {
                                 Starting
                             </div>
                         </div>
-                        <div className="info" style={{marginRight:8}}>
-                            <Box sx={{ width: '100%' }}>
-                                <LinearProgress  value={0}  variant="determinate" sx={{backgroundColor:'#D3D3D3'}} />
-                            </Box>
-                            <div className="text">
-                                Picking
-                            </div>
-                        </div>
                         <div className="info" >
                             <Box sx={{ width: '100%' }}>
                                 <LinearProgress  value={0}  variant="determinate" sx={{backgroundColor:'#D3D3D3'}} />
@@ -72,41 +64,6 @@ const ProgressBar = ({status}) => {
                 </div>
             }
             {status === 1 &&
-                <div className="middle">
-                    <div >
-                        <Avatar  component={DirectionsRunIcon} sx={{ color: "#ee2738", backgroundColor: "white", width:50, height:50 }}  />
-                    </div>
-                    <div className="container-4">
-                        <div className="info" style={{marginRight:8}}>
-                            <Box sx={{ width: '100%' }}>
-                                <LinearProgress  value={100}  variant="determinate" sx={{backgroundColor:'#D3D3D3'}} />
-                            </Box>
-                            <div className="text">
-                                Starting
-                            </div>
-                        </div>
-                        <div className="info" style={{marginRight:8}}>
-                            <Box sx={{ width: '100%' }}>
-                                <LinearProgress  sx={{backgroundColor:'#D3D3D3'}} />
-                            </Box>
-                            <div className="text">
-                                Picking
-                            </div>
-                        </div>
-                        <div className="info" >
-                            <Box sx={{ width: '100%' }}>
-                                <LinearProgress  value={0}  variant="determinate" sx={{backgroundColor:'#D3D3D3'}} />
-                            </Box>
-                            <div className="text">
-                                Delivering
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-
-            }
-            {status === 2 &&
                 <div className="last">
                     {(() => {
                         switch (user.vehicle.type) {
@@ -139,14 +96,6 @@ const ProgressBar = ({status}) => {
                                 Starting
                             </div>
                         </div>
-                        <div className="info" style={{marginRight:8}}>
-                            <Box sx={{ width: '100%' }}>
-                                <LinearProgress  value={100}  variant="determinate" sx={{backgroundColor:'#D3D3D3'}} />
-                            </Box>
-                            <div className="text">
-                                Picking
-                            </div>
-                        </div>
                         <div className="info" >
                             <Box sx={{ width: '100%' }}>
                                 <LinearProgress  sx={{backgroundColor:'#D3D3D3'}} />
@@ -160,7 +109,7 @@ const ProgressBar = ({status}) => {
                 </div>
 
             }
-            {status >= 3 &&
+            {status >= 2 &&
                 <div className="middle">
                     <div >
                         <Avatar  component={DoneAllIcon} sx={{ color: "#ee2738", backgroundColor: "white", width:50, height:50 }}  />
@@ -172,14 +121,6 @@ const ProgressBar = ({status}) => {
                             </Box>
                             <div className="text">
                                 Starting
-                            </div>
-                        </div>
-                        <div className="info" style={{marginRight:8}}>
-                            <Box sx={{ width: '100%' }}>
-                                <LinearProgress  value={100}  variant="determinate" sx={{backgroundColor:'#D3D3D3'}} />
-                            </Box>
-                            <div className="text">
-                                Picking
                             </div>
                         </div>
                         <div className="info" >

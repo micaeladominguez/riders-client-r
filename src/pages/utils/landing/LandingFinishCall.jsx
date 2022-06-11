@@ -5,6 +5,7 @@ import {useNavigate} from "react-router-dom";
 import Avatar from "@mui/material/Avatar";
 import DoneAllIcon from "@mui/icons-material/DoneAll";
 const LandingFinishCall = () => {
+    const ride =  JSON.parse(window.localStorage.getItem('lastRideId'));
     const navigate = useNavigate();
     const home = () => {
         navigate('/home');
