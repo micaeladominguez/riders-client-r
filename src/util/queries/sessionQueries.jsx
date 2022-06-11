@@ -241,3 +241,36 @@ export const RATE_CALLER = gql`
         })
   }
 `;
+export const GET_RIDES = gql`
+   query GetRides {
+    getRiderRecord {
+        id,
+        call{
+            id
+            callerRatingStars
+            requestedVehicles{
+                bicycle
+                motorcycle
+                car
+                van
+            }
+            priceInCents
+            description
+            startLocation{
+                address
+                lat
+                long
+            }
+            finishLocation{
+                address
+                lat
+                long
+            }
+             date
+        }
+        riderArrivedStartLocation,
+        date,
+        active,
+    }
+  }
+`;

@@ -1,0 +1,54 @@
+.info-grades{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100%;
+    margin-top: 20px;
+}
+.field-requirement-grades{
+    flex: 1;
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
+    justify-items: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    border: 1px solid #ee2738;
+
+}
+.flex-grades {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.bar-field-grades{
+    width: 100%;
+    display: flex;
+    margin-top:10px;
+    margin-bottom:10px;
+
+}
+.info-field-grades {
+    width: 100%;
+    font-size: 15px;
+    align-items: center;
+    text-align: center;
+    padding: 10px;
+}
+.components-field-grades {
+    width: 70%;
+    font-size: 30px;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+}
+.components-img-grades {
+    width: 30%;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    margin-right: 15px;
+    margin-bottom: 20px;
+}

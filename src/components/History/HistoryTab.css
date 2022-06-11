@@ -1,0 +1,97 @@
+.formCenter-history {
+    display: flex;
+    padding-right: 50px;
+    margin-right: 0;
+}
+.button-history {
+    width: 100%;
+
+    color: #02022f;
+}
+.fieldsShort-history {
+    margin-top: 2px;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    width: 80%;
+    justify-content: space-between;
+}
+/*ee2738*/
+.card-history {
+    background-color: #ffffff;
+    display: flex;
+    width: 100%;
+    border-radius: 100px;
+    border-color: black;
+}
+.info-tab-history{
+    margin-bottom: 20px;
+    margin-top: 10px;
+    margin-right: 50px;
+    margin-left: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+
+}
+.header-2-history {
+    background-color: #ee2738;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+}
+.flex-container-history {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content:left ;
+    alignItems:center;
+
+}
+.components-img-2-history{
+    align-items: center;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+.components-field-2-history {
+    font-size: 30px;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+.card-bottom-history {
+    border: 1px solid ;
+    margin-top: 10px;
+    border-radius: 20px;
+    background-color:white;
+    width: 80%;
+    box-shadow: 5px 5px 5px  #bbbbbb;
+    border-color: #ee2738;
+    padding: 0;
+    overflow: hidden;
+    max-width: 500px;
+    min-width: 350px;
+}
+.flex-history {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+.all-grid-tab-history{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items:center;
+    justify-content: center;
+}

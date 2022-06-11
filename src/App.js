@@ -10,6 +10,7 @@ import CallCardPage from "./pages/callCard/CallCardPage";
 import ErrorPage from "./pages/utilsPages/ErrorPage";
 import LandingNotificationPage from "./pages/utilsPages/LandingNotificationPage";
 import LandingFinishCallPage from "./pages/LandingFinish/LandingFinishCallPage";
+import HistoryPage from "./pages/Grades/HistoryPage";
 
 export const RiderContext = createContext({
     rider: {
@@ -43,14 +44,17 @@ function App() {
             <ThemeProvider theme={ridersTheme} >
                 <BrowserRouter>
                  <Routes>
-                  <Route path='/' element={<LoginPage /> } />
-                  <Route path='/sign-up' element={<SignUpPage /> } />
-                  <Route path='/home' element={<HomePage rider={rider}/>} />
-                  <Route path='/card' element={<CallCardPage />} />
-                  <Route path='/errorPage' element={<ErrorPage />} />
-                  <Route path='/landingN' element={<LandingNotificationPage/>} />
-                  <Route path='/landingF' element={<LandingFinishCallPage/>} />
-                </Routes>
+
+                    <Route path='/' element={<LoginPage /> } />
+                    <Route path='/sign-up' element={<SignUpPage /> } />
+                    <Route path='/home' element={<HomePage rider={rider}/>} />
+                    <Route path='/card' element={<CallCardPage />} />
+                    <Route path='/errorPage' element={<ErrorPage />} />
+                    <Route path='/landingN' element={<LandingNotificationPage/>} />
+                    <Route path='/landingF' element={<LandingFinishCallPage/>} />
+                     <Route path='/history' element={<HistoryPage/>} />
+
+                 </Routes>
                 </BrowserRouter>
             </ThemeProvider>
         </RiderContext.Provider>

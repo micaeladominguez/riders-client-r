@@ -22,7 +22,7 @@ import './NavBar.css'
 export const NavBar = ()  => {
     const pages = [
         {label:'Home', icon: HomeIcon, path:'/home'},
-        {label:'History', icon: GradeIcon, path: '/'},
+        {label:'History', icon: GradeIcon, path: '/history'},
         {label:'Notifications',icon:NotificationsIcon, path:'/'},
     ];
     const settings = [
