@@ -74,9 +74,8 @@ export const ActualRide = () => {
             setErrorMessage('Please enter a DNI');
         }else{
             const response = await finishRide({variables:{callerDNI: parseInt(values)}});
+            window.localStorage.setItem('rideId', response.data.finishRide.id);
         }
-
-
     }
     const refresh = () => {
         window.location.reload();

@@ -6,6 +6,7 @@ const LandingFinishCallPage = () => {
         <div>
             <NavBar />
             <LandingFinishCall />
+
         </div>
     )
 }

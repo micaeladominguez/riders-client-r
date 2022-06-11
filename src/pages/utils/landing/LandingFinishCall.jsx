@@ -4,15 +4,18 @@ import Button from "@mui/material/Button";
 import {useNavigate} from "react-router-dom";
 import Avatar from "@mui/material/Avatar";
 import DoneAllIcon from "@mui/icons-material/DoneAll";
+import {Modal} from "@mui/material";
+import {RateCaller} from "../../../components/RateCaller/RateCaller";
 const LandingFinishCall = () => {
-    const ride =  JSON.parse(window.localStorage.getItem('lastRideId'));
+    const [open, setOpen] = React.useState(false);
+    const handleClose = () => setOpen(false);
     const navigate = useNavigate();
     const home = () => {
         navigate('/home');
         window.location.reload();
     }
     const rateCaller = () => {
-        //TODO
+        setOpen(true);
     }
     return (
         <div className="container-error">
@@ -39,6 +42,15 @@ const LandingFinishCall = () => {
                     > Back Home </Button>
                 </div>
             </div>
+            <Modal
+                open={open}
+                onClose={handleClose}
+                aria-labelledby="modal-modal-title"
+                aria-describedby="modal-modal-description"
+            >
+                <RateCaller  onClose={handleClose} />
+            </Modal>
+
         </div>
 
 

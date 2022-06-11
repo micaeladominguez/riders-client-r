@@ -9,7 +9,7 @@ import {createContext, useMemo, useState} from "react";
 import CallCardPage from "./pages/callCard/CallCardPage";
 import ErrorPage from "./pages/utilsPages/ErrorPage";
 import LandingNotificationPage from "./pages/utilsPages/LandingNotificationPage";
-import LandingFinishCallPage from "./pages/utilsPages/LandingFinishCallPage";
+import LandingFinishCallPage from "./pages/LandingFinish/LandingFinishCallPage";
 
 export const RiderContext = createContext({
     rider: {

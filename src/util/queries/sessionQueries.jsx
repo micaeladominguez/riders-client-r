@@ -232,3 +232,12 @@ export const GET_RIDER_STATUS = gql`
     }
   }
 `;
+
+export const RATE_CALLER = gql`
+  mutation RateCaller($rideId: String!, $stars: Int!) {
+    rateCaller(input: {
+        rideId: $rideId,
+        stars: $stars,
+        })
+  }
+`;
