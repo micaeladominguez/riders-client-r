@@ -16,14 +16,18 @@ import TwoWheelerIcon from '@mui/icons-material/TwoWheeler';
 import DirectionsCarIcon from "@mui/icons-material/DirectionsCar";
 import PedalBikeIcon from "@mui/icons-material/PedalBike";
 import AirportShuttleIcon from "@mui/icons-material/AirportShuttle";
-import {useMutation} from "@apollo/client";
-import {ACCEPT_CALL} from "../../util/queries/sessionQueries";
+import {useMutation, useQuery} from "@apollo/client";
+import {ACCEPT_CALL, GET_RIDER} from "../../util/queries/sessionQueries";
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 export const CallCard = ({call, onClose}) => {
     const date = new Date(call.date);
-    const [acceptRideMutation, {data, loading, error}] = useMutation(ACCEPT_CALL);
+    const [acceptRideMutation, { error}] = useMutation(ACCEPT_CALL);
     const navigate = useNavigate();
-    const user = JSON.parse(window.localStorage.getItem('rider'));
+    const { loading, data } =  useQuery(GET_RIDER, {variables: {},onCompleted :(data)=>{
+            if(data) {
+            }
+        }});
+
     const home = () => {
         onClose();
     }
@@ -45,7 +49,7 @@ export const CallCard = ({call, onClose}) => {
             {
                 error && errorPage()
             }
-            { !error && call.id !== "" &&
+            { !error && call.id !== "" &&  data &&
                 <div className="other">
                     <div className="header-2">
                         <button className="back-home-button" onClick={()=> home()}>
@@ -54,7 +58,7 @@ export const CallCard = ({call, onClose}) => {
 
                         <div className="header-icons">
                             {(() => {
-                                switch (user.vehicle.type) {
+                                switch (data.getRider.vehicle.type) {
                                     case 'motorcycle':   return <div >
                                         <Avatar  component={TwoWheelerIcon} sx={{ bgcolor: "#ee2738", width:50, height:50 }} variant="circular" />
                                     </div>;

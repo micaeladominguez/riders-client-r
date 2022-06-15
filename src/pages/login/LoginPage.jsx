@@ -61,7 +61,6 @@ const LoginPage = () => {
             const riderResponded = riderResponse.data.getRider;
             console.log(riderResponded);
             setRider(riderResponded);
-            window.localStorage.setItem('rider', JSON.stringify(riderResponded))
             navigate('/home')
         }
     };

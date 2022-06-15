@@ -15,7 +15,6 @@ const HistoryTab = ({ride}) => {
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
     const date = new Date(ride.date);
-    const user = JSON.parse(window.localStorage.getItem('rider'));
     return(
         <div className="flex-history">
             <button onClick={ handleOpen} className="card-bottom-history"  >
