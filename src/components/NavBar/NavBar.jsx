@@ -28,6 +28,12 @@ export const NavBar = ()  => {
     const settings = [
         {label:'Logout', path: '/'}
     ];
+    const navigateFromPath = (path) => {
+        console.log(path)
+        navigate(path);
+        window.location.reload();
+
+    }
     const navigate = useNavigate()
     const [anchorElNav, setAnchorElNav] = React.useState(null);
     const [anchorElUser, setAnchorElUser] = React.useState(null);
@@ -94,7 +100,7 @@ export const NavBar = ()  => {
                             }}
                         >
                             {pages.map((page) => (
-                                <MenuItem key={page.label} onClick={()=> navigate(page.path)}>
+                                <MenuItem key={page.label} onClick= {() => navigateFromPath(page.path)}>
                                     <Typography textAlign="center">{page.label}</Typography>
                                 </MenuItem>
 
@@ -106,7 +112,7 @@ export const NavBar = ()  => {
                             <Tooltip title={page.label}>
                                 <Button
                                     key={page.label}
-                                    onClick={()=> navigate(page.path)}
+                                    onClick={()=> navigateFromPath(page.path)}
                                     sx={{ my: 2, color: 'white', display: 'block' }}
                                 >
                                     <SvgIcon component={page.icon} />

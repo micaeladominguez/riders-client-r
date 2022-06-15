@@ -9,6 +9,8 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import Avatar from "@mui/material/Avatar";
 import GradeIcon from '@mui/icons-material/Grade';
 import {useState} from "react";
+import {Star} from "@mui/icons-material";
+import {Box} from "@mui/system";
 
 
 export const RateCaller = ({onClose}) => {
@@ -28,6 +30,11 @@ export const RateCaller = ({onClose}) => {
         const response = rateCallerMutation({variables: {rideId:rideId, stars:parseInt(stars)}});
         navigate('/home');
         window.location.reload();
+    }
+    const getClassName = (starNumber) => {
+        let className = 'rating-star';
+        className += stars >= starNumber ? ' rating-star-selected' : '';
+        return className;
     }
     const handleChange =() => (event) => {
         const possibleStars= parseInt(event.target.value);
@@ -56,17 +63,15 @@ export const RateCaller = ({onClose}) => {
                             <strong> Rate Caller from 0 to 5</strong>
                         </div>
                     </div>
-                    <FormControl fullWidth margin="normal" sx={{mt: 1}} variant="outlined">
-                        <InputLabel htmlFor="outlined-adornment-password">STARS</InputLabel>
-                        <OutlinedInput
-                            required
-                            id="stars"
-                            type='number'
-                            value={stars}
-                            onChange={handleChange()}
-                            label="Stars"
-                        />
-                    </FormControl>
+                    <Box className={'rating-selector-container'}>
+                        <div>
+                            <Star className={getClassName(1)} onClick={() => setStars(1)}/>
+                            <Star className={getClassName(2)} onClick={() => setStars(2)}/>
+                            <Star className={getClassName(3)} onClick={() => setStars(3)}/>
+                            <Star className={getClassName(4)} onClick={() => setStars(4)}/>
+                            <Star className={getClassName(5)} onClick={() => setStars(5)}/>
+                        </div>
+                    </Box>
                 </div>
                 <div className="buttons-caller">
                     <Button
