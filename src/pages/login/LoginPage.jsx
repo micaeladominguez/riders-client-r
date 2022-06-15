@@ -25,14 +25,14 @@ const LoginPage = () => {
         showPassword: false,
     });
     const navigate = useNavigate()
-    const loggedIn = window.localStorage.getItem('token')
     const [errorMessage, setErrorMessage] = useState('')
     useEffect(() =>{
-        if (loggedIn){
+
+        if(localStorage.getItem('token')){
             navigate('/home')
             window.location.reload();
         }
-    }, [loggedIn]);
+    }, []);
 
     const [login, ] = useMutation(LOGIN_RIDER, { onError: (e) => setErrorMessage(e.message)})
     const handleChange =(prop) => (event) => {
