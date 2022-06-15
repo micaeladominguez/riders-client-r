@@ -52,8 +52,7 @@ export const NavBar = ()  => {
     };
 
     const handleLogout = () => {
-        window.localStorage.setItem('token', '')
-        window.localStorage.setItem('call', '')
+        window.localStorage.clear()
         navigate('/')
     }
 

@@ -37,6 +37,9 @@ export const CallCard = ({call, onClose}) => {
     }
 
     useEffect(()=>{
+        if(window.localStorage.getItem('token') === null){
+            navigate('/');
+        }
         if(call.id === ""){
             home()
         }

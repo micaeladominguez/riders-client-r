@@ -3,6 +3,7 @@ import {useEffect, useState} from "react";
 import Loading from "../utils/loading/Loading";
 import Filter from "./Filter";
 import {NavBar} from "../../components/NavBar/NavBar";
+import {useNavigate} from "react-router-dom";
 const HomePage = () => {
     const [lat, setLat] = useState(null);
     const [lng, setLng] = useState(null);
@@ -24,7 +25,13 @@ const HomePage = () => {
             });
         }
     }
+    const navigate = useNavigate();
+
     useEffect(() => {
+        console.log(window.localStorage.getItem('token'))
+        if(window.localStorage.getItem('token') === null){
+            navigate('/');
+        }
         getLocation();
     }, []);
     return (

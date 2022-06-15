@@ -34,11 +34,14 @@ function App() {
         rating: {__typename: '', stars: 5},
         surname: "",
         vehicle: {__typename: '', type: ''},
+
     });
     const value = useMemo(
         () => ({ rider, setRider }),
         [rider]
     );
+    const isLoggedIn = window.localStorage.getItem('token') ? true : false;
+
     return (
         <RiderContext.Provider value={ value }>
             <ThemeProvider theme={ridersTheme} >
