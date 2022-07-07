@@ -33,6 +33,15 @@
     justify-content: center;
     grid-gap: 20px;
 }
+.chat-and-buttons{
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+}
+.chat-button {
+    margin-left: auto;
+    align-items: flex-end;
+}
 .other-2 {
     max-width: 360px;
     width: 100%;

@@ -11,6 +11,8 @@ import ErrorPage from "./pages/utilsPages/ErrorPage";
 import LandingNotificationPage from "./pages/utilsPages/LandingNotificationPage";
 import LandingFinishCallPage from "./pages/LandingFinish/LandingFinishCallPage";
 import HistoryPage from "./pages/Grades/HistoryPage";
+import io from "socket.io-client";
+import ChatPage from "./pages/Chat/ChatPage";
 
 export const RiderContext = createContext({
     rider: {
@@ -24,6 +26,7 @@ export const RiderContext = createContext({
     },
     setRider: () => {}
 });
+
 
 function App() {
     const [rider, setRider] = useState({
@@ -40,14 +43,12 @@ function App() {
         () => ({ rider, setRider }),
         [rider]
     );
-    const isLoggedIn = window.localStorage.getItem('token') ? true : false;
 
     return (
         <RiderContext.Provider value={ value }>
             <ThemeProvider theme={ridersTheme} >
                 <BrowserRouter>
                  <Routes>
-
                     <Route path='/' element={<LoginPage /> } />
                     <Route path='/sign-up' element={<SignUpPage /> } />
                     <Route path='/home' element={<HomePage rider={rider}/>} />
@@ -56,7 +57,7 @@ function App() {
                     <Route path='/landingN' element={<LandingNotificationPage/>} />
                     <Route path='/landingF' element={<LandingFinishCallPage/>} />
                      <Route path='/history' element={<HistoryPage/>} />
-
+                     <Route path='/chat' element={<ChatPage/>} />
                  </Routes>
                 </BrowserRouter>
             </ThemeProvider>

@@ -1,4 +1,4 @@
-import {Button, FormControl, InputLabel, LinearProgress, OutlinedInput, SvgIcon, Tooltip} from "@mui/material";
+import {Button, FormControl, InputLabel, LinearProgress, Modal, OutlinedInput, SvgIcon, Tooltip} from "@mui/material";
 import TrendingUpIcon from "@mui/icons-material/TrendingUp";
 import Typography from "@mui/material/Typography";
 import GradeIcon from "@mui/icons-material/Grade";
@@ -15,13 +15,14 @@ import {useLazyQuery, useMutation} from "@apollo/client";
 import {
     FINISH_RIDE,
     GET_ACTIVE_RIDE,
-    REGISTER_RIDER,
     UPDATE_RIDER_FIRST_LOCATION
 } from "../../util/queries/sessionQueries";
+import ChatIcon from '@mui/icons-material/Chat';
 import {useEffect, useState} from "react";
 import {useNavigate} from "react-router-dom";
 import Avatar from "@mui/material/Avatar";
-import DoneAllIcon from "@mui/icons-material/DoneAll";
+import IconButton from "@mui/material/IconButton";
+import ChatRoom from "../Chat/ChatRoom";
 
 export const ActualRide = () => {
     const [status, setStatus] = React.useState(0);
@@ -38,6 +39,9 @@ export const ActualRide = () => {
             }
         }
     }
+
+    const [open, setOpen] = React.useState(false);
+    const handleClose = () => setOpen(false);
     const navigate = useNavigate();
     const handleChange =() => (event) => {
         setErrorMessage('');
@@ -60,6 +64,7 @@ export const ActualRide = () => {
             navigate('/landingF');
         },
     })
+    const [messages, setMessages] = React.useState([]);
 
     const labelStyle = {
         display: 'block',
@@ -68,6 +73,9 @@ export const ActualRide = () => {
     const arrivedToFirstAddress = async () => {
         const arrived = await arrivedMutation();
         setStatus(status + 1);
+    }
+    const openChat = () => {
+        setOpen(true);
     }
     const finishRideBottom = async () => {
         if(values === ''){
@@ -209,12 +217,27 @@ export const ActualRide = () => {
                         </div>
                     </div>
                     <div className="card-buttons">
-                        <div className='update-button'>
-                            {status === 0 && <Button variant="contained"  style={{ width:'100%', backgroundColor: '#008000'}} onClick={() => arrivedToFirstAddress()}>I arrived to the starting address</Button>}
-                            {status === 1 && <Button variant="contained"  style={{ width:'100%', backgroundColor: '#008000'}} onClick={() => setStatus(status + 1)}>I arrived to the last address</Button>}
-                            <Button variant="contained" color="error" style={{ width:'100%'}}>Cancel Ride</Button>
+                            <div className='update-button'>
+                                {status === 0 && <Button variant="contained"  style={{ width:'100%', backgroundColor: '#008000'}} onClick={() => arrivedToFirstAddress()}>I arrived to the starting address</Button>}
+                                {status === 1 && <Button variant="contained"  style={{ width:'100%', backgroundColor: '#008000'}} onClick={() => setStatus(status + 1)}>I arrived to the last address</Button>}
+                                <Button variant="contained" color="error" style={{ width:'100%'}}>Cancel Ride</Button>
+                                <div className="chat-button">
+                                    <IconButton onClick={() => openChat()} >
+                                        < Avatar component={ChatIcon} sx={{ bgcolor: "#e53935", padding: 1 }} variant="circular" />
+                                    </IconButton>
+                                </div>
                         </div>
+
                     </div>
+
+                    <Modal
+                        open={open}
+                        onClose={handleClose}
+                        aria-labelledby="modal-modal-title"
+                        aria-describedby="modal-modal-description"
+                    >
+                        <ChatRoom  onClose={handleClose} rideId={actualRide.id} messagess={messages} setMessagess={setMessages}/>
+                    </Modal>
                 </div>
             }
             {
@@ -248,6 +271,19 @@ export const ActualRide = () => {
                         <div className="error-field">
                             <label style={labelStyle} id='passwordLabel'>{errorMessage}</label>
                         </div>
+                        <div className="chat-button">
+                            <IconButton onClick={() => openChat()} >
+                                < Avatar component={ChatIcon} sx={{ bgcolor: "#e53935", padding: 1 }} variant="circular" />
+                            </IconButton>
+                        </div>
+                        <Modal
+                            open={open}
+                            onClose={handleClose}
+                            aria-labelledby="modal-modal-title"
+                            aria-describedby="modal-modal-description"
+                        >
+                            <ChatRoom  onClose={handleClose} rideId={actualRide.id} messagess={messages} setMessagess={setMessages}/>
+                        </Modal>
 
                     </div>
                 </div>
