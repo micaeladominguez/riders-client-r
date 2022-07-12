@@ -9,7 +9,8 @@ const LandingNotification = () => {
         window.location.reload();
     }
     const cancelRide = () => {
-        //TODO
+       navigate('/history');
+        window.location.reload();
     }
     return (
         <div className="container-error">
@@ -33,7 +34,7 @@ const LandingNotification = () => {
                         type="submit"
                         onClick={() => cancelRide()}
                         sx={{ mt: 1, backgroundColor: '#e53935', color: 'white'	}}
-                    > Cancel ride </Button>
+                    > History </Button>
                 </div>
             </div>
         </div>

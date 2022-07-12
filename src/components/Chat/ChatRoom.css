@@ -50,6 +50,8 @@
 }
 .messages-container{
     margin-top: 20px;
+    max-height: 80%;
+    overflow: scroll;
 }
 .send-message-button {
     border: 1.5px solid ;

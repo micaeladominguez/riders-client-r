@@ -29,7 +29,6 @@ const ChatRoom = ({onClose, rideId, setMessagess, messagess}) => {
                 </button>
             </div>
             <div className="messages-container">
-                {console.log(messagess)}
                     {messagess.map(m => {
                         return(
                         <MessageBox text={m} />

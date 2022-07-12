@@ -15,6 +15,8 @@ const HistoryTabs = () => {
         }});
     return (
         <div >
+            {console.log(data)}
+
             {data && data.getRiderRecord.length > 0 && (
                 data.getRiderRecord.map((ride) => (
                     <HistoryTab ride={ride} />

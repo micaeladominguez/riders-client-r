@@ -94,7 +94,7 @@ export const ActualRide = () => {
         }catch (e){}
     },[]);
     return(
-        <div>
+        <div className="width-page">
 
             {actualRide === null && (<Loading />)}
             {
@@ -220,7 +220,6 @@ export const ActualRide = () => {
                             <div className='update-button'>
                                 {status === 0 && <Button variant="contained"  style={{ width:'100%', backgroundColor: '#008000'}} onClick={() => arrivedToFirstAddress()}>I arrived to the starting address</Button>}
                                 {status === 1 && <Button variant="contained"  style={{ width:'100%', backgroundColor: '#008000'}} onClick={() => setStatus(status + 1)}>I arrived to the last address</Button>}
-                                <Button variant="contained" color="error" style={{ width:'100%'}}>Cancel Ride</Button>
                                 <div className="chat-button">
                                     <IconButton onClick={() => openChat()} >
                                         < Avatar component={ChatIcon} sx={{ bgcolor: "#e53935", padding: 1 }} variant="circular" />

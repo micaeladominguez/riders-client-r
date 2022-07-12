@@ -34,10 +34,12 @@
     margin-bottom: 15px;
     width: fit-content;
     justify-content: flex-start;
+    max-width: 250px;
 }
 .user_message {
     margin-left: auto;
     margin-right: 8px;
     background-color: #f8e9ef;
+    overflow-wrap: break-word;
 }
 

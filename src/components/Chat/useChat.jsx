@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect } from "react";
 
 
 const PRIVATE_MESSAGE = "private-message";
@@ -26,12 +26,16 @@ const useChat = ({rideId, setMessagess, messagess}) => {
     };
     socket.on(PRIVATE_MESSAGE, callback);
     const sendMessage = (messageBody) => {
-        localMessages = [...messagess, {message: messageBody, own: true}];
-        setMessagess(localMessages);
-        socket.emit(PRIVATE_MESSAGE, {
-            rideId: rideId,
-            text: messageBody
-        });
+        console.log(rideId);
+        if(messageBody){
+            localMessages = [...messagess, {message: messageBody, own: true}];
+            setMessagess(localMessages);
+            socket.emit("private-message", {
+                rideId: rideId,
+                text: messageBody
+            });
+        }
+
     };
 
     return { messagess, sendMessage };

@@ -29,13 +29,13 @@ const HomePage = () => {
 
     useEffect(() => {
         console.log(window.localStorage.getItem('token'))
-        if(window.localStorage.getItem('token') === null){
+        if(!window.localStorage.getItem('token')){
             navigate('/');
         }
         getLocation();
     }, []);
     return (
-        <div>
+        <div className="home-page">
             <NavBar />
             {(status === "Locating..." || lat === null || lng === null) && <Loading /> }
             {(status === "Ok" && lat !== null && lng !== null) && ( <Filter address={{lat: lat, lng: lng}}   />)}
